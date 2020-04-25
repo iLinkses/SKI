@@ -47,10 +47,12 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(399, 30);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(584, 343);
             this.dataGridView1.TabIndex = 7;
@@ -146,12 +148,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(171, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
             // сменитьToolStripMenuItem
             // 
             this.сменитьToolStripMenuItem.Name = "сменитьToolStripMenuItem";
-            this.сменитьToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
+            this.сменитьToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.сменитьToolStripMenuItem.Text = "Сменить";
             // 
             // AdmnForm
