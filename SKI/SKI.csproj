@@ -74,6 +74,13 @@
     <Compile Include="Admin\AdmnForm.designer.cs">
       <DependentUpon>AdmnForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="User\EmergencySituation\AnalysisByParameters.cs" />
+    <Compile Include="User\EmergencySituation\ESForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\EmergencySituation\ESForm.designer.cs">
+      <DependentUpon>ESForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="User\MathModel\MathModel.cs">
       <SubType>Form</SubType>
     </Compile>
