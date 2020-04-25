@@ -31,7 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.программаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.модульToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -40,8 +40,9 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.программаToolStripMenuItem});
+            this.модульToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.MdiWindowListItem = this.модульToolStripMenuItem;
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 1;
@@ -64,11 +65,11 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(151, 20);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
-            // программаToolStripMenuItem
+            // модульToolStripMenuItem
             // 
-            this.программаToolStripMenuItem.Name = "программаToolStripMenuItem";
-            this.программаToolStripMenuItem.Size = new System.Drawing.Size(105, 24);
-            this.программаToolStripMenuItem.Text = "Программа";
+            this.модульToolStripMenuItem.Name = "модульToolStripMenuItem";
+            this.модульToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.модульToolStripMenuItem.Text = "Модуль";
             // 
             // MainForm
             // 
@@ -98,7 +99,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripMenuItem программаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem модульToolStripMenuItem;
     }
 }
 

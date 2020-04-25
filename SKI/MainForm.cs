@@ -33,7 +33,7 @@ namespace SKI
                 AdmnForm admnForm = new AdmnForm();
                 admnForm.MdiParent = this;
                 this.SetClientSizeCore(admnForm.Width + 4, admnForm.Height + 20 + 26 + 4);
-                toolStripStatusLabel1.Text = "Математическая модель";
+                toolStripStatusLabel1.Text = "Модуль администратора";
                 //this.Size = SizeFromClientSize(MathModel.Size);
                 admnForm.Show();
             }
