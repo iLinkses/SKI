@@ -102,6 +102,9 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="User\EmergencySituation\ESForm.resx">
+      <DependentUpon>ESForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="User\MathModel\MathModel.resx">
       <DependentUpon>MathModel.cs</DependentUpon>
     </EmbeddedResource>

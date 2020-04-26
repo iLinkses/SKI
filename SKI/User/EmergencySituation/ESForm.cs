@@ -12,11 +12,11 @@ using SQLiteDBConnection;
 
 namespace SKI
 {
-    public partial class Main : Form
+    public partial class ESForm : Form
     {
         SQLiteDB db = new SQLiteDB();
         
-        public Main()
+        public ESForm()
         {
             //---
             InitializeComponent();

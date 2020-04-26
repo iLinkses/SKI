@@ -1,6 +1,6 @@
 ﻿namespace SKI
 {
-    partial class Main
+    partial class ESForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.менюToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.информацияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.textBoxW = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
@@ -73,46 +72,10 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.textBoxW = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.menuStrip1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.менюToolStripMenuItem,
-            this.информацияToolStripMenuItem,
-            this.оПрограммеToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // менюToolStripMenuItem
-            // 
-            this.менюToolStripMenuItem.Name = "менюToolStripMenuItem";
-            this.менюToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
-            this.менюToolStripMenuItem.Text = "Меню";
-            // 
-            // информацияToolStripMenuItem
-            // 
-            this.информацияToolStripMenuItem.Name = "информацияToolStripMenuItem";
-            this.информацияToolStripMenuItem.Size = new System.Drawing.Size(175, 24);
-            this.информацияToolStripMenuItem.Text = "Информация по ССБТ";
-            // 
-            // оПрограммеToolStripMenuItem
-            // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
             // 
             // tabPage2
             // 
@@ -153,10 +116,45 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 443);
+            this.tabPage2.Size = new System.Drawing.Size(792, 462);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Подбор по параметрам";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(646, 9);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(16, 17);
+            this.label24.TabIndex = 33;
+            this.label24.Text = "=";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(612, 9);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(21, 17);
+            this.label25.TabIndex = 32;
+            this.label25.Text = "W";
+            // 
+            // textBoxW
+            // 
+            this.textBoxW.Location = new System.Drawing.Point(668, 6);
+            this.textBoxW.Name = "textBoxW";
+            this.textBoxW.Size = new System.Drawing.Size(100, 22);
+            this.textBoxW.TabIndex = 31;
+            this.textBoxW.Text = "0,0001";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(384, 9);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(222, 17);
+            this.label26.TabIndex = 30;
+            this.label26.Text = "Концентрация воды в шихте (%)";
             // 
             // button1
             // 
@@ -433,7 +431,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(792, 443);
+            this.tabPage1.Size = new System.Drawing.Size(792, 462);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Ручной выбор";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -490,77 +488,34 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(0, 31);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 472);
+            this.tabControl1.Size = new System.Drawing.Size(800, 491);
             this.tabControl1.TabIndex = 1;
             // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(646, 9);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(16, 17);
-            this.label24.TabIndex = 33;
-            this.label24.Text = "=";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(612, 9);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(21, 17);
-            this.label25.TabIndex = 32;
-            this.label25.Text = "W";
-            // 
-            // textBoxW
-            // 
-            this.textBoxW.Location = new System.Drawing.Point(668, 6);
-            this.textBoxW.Name = "textBoxW";
-            this.textBoxW.Size = new System.Drawing.Size(100, 22);
-            this.textBoxW.TabIndex = 31;
-            this.textBoxW.Text = "0,0001";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(384, 9);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(222, 17);
-            this.label26.TabIndex = 30;
-            this.label26.Text = "Концентрация воды в шихте (%)";
-            // 
-            // Main
+            // ESForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 503);
+            this.ClientSize = new System.Drawing.Size(800, 492);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.menuStrip1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Main";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Name = "ESForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Определение нештатных ситуаций";
             this.Load += new System.EventHandler(this.Main_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem менюToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem информацияToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage1;

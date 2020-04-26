@@ -32,6 +32,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.модульToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.математическаяМодельToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.определениеНештатныхСитуацийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -42,7 +44,6 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.модульToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.MdiWindowListItem = this.модульToolStripMenuItem;
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 1;
@@ -67,9 +68,26 @@
             // 
             // модульToolStripMenuItem
             // 
+            this.модульToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.математическаяМодельToolStripMenuItem,
+            this.определениеНештатныхСитуацийToolStripMenuItem});
             this.модульToolStripMenuItem.Name = "модульToolStripMenuItem";
             this.модульToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.модульToolStripMenuItem.Text = "Модуль";
+            // 
+            // математическаяМодельToolStripMenuItem
+            // 
+            this.математическаяМодельToolStripMenuItem.Name = "математическаяМодельToolStripMenuItem";
+            this.математическаяМодельToolStripMenuItem.Size = new System.Drawing.Size(335, 26);
+            this.математическаяМодельToolStripMenuItem.Text = "Математическая модель";
+            this.математическаяМодельToolStripMenuItem.Click += new System.EventHandler(this.математическаяМодельToolStripMenuItem_Click);
+            // 
+            // определениеНештатныхСитуацийToolStripMenuItem
+            // 
+            this.определениеНештатныхСитуацийToolStripMenuItem.Name = "определениеНештатныхСитуацийToolStripMenuItem";
+            this.определениеНештатныхСитуацийToolStripMenuItem.Size = new System.Drawing.Size(335, 26);
+            this.определениеНештатныхСитуацийToolStripMenuItem.Text = "Определение нештатных ситуаций";
+            this.определениеНештатныхСитуацийToolStripMenuItem.Click += new System.EventHandler(this.определениеНештатныхСитуацийToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -100,6 +118,8 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripMenuItem модульToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem математическаяМодельToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem определениеНештатныхСитуацийToolStripMenuItem;
     }
 }
 
