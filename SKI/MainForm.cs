@@ -34,6 +34,7 @@ namespace SKI
             }
             else if (Program._IsAdmUser)
             {
+                модульToolStripMenuItem.Visible = false;
                 AdmnForm admnForm = new AdmnForm();
                 admnForm.MdiParent = this;
                 this.SetClientSizeCore(admnForm.Width + 4, admnForm.Height + 20 + 26 + 4);
@@ -70,6 +71,6 @@ namespace SKI
             this.SetClientSizeCore(eSForm.Width + 4, eSForm.Height + 20 + 26 + 4);
             toolStripStatusLabel1.Text = "Определение нештатных ситуаций";
             eSForm.Show();
-        }
+        }  
     }
 }

@@ -23,8 +23,9 @@ namespace SKI
             if (AuthForm.DialogResult == DialogResult.OK)
             {
                 _IsAdmUser = AuthForm.IsAdmUser;
+                Application.Run(new MainForm());
             }
-            Application.Run(new MainForm());
+            else return;
         }
     }
 }

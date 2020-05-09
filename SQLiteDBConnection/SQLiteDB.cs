@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SQLite;
 
 namespace SQLiteDBConnection
@@ -13,7 +10,7 @@ namespace SQLiteDBConnection
         string _path = "SKI.db";
         public SQLiteDB() { }
 
-        internal void Insert(object e)
+        public void Insert(object e)
         {
             using (var db = new SQLiteConnection(_path))
             {
@@ -22,7 +19,7 @@ namespace SQLiteDBConnection
             }
         }
 
-        internal void Update(object e)
+        public void Update(object e)
         {
             using (var db = new SQLiteConnection(_path))
             {
@@ -31,7 +28,7 @@ namespace SQLiteDBConnection
             }
         }
 
-        internal void Delete(object e)
+        public void Delete(object e)
         {
             using (var db = new SQLiteConnection(_path))
             {
@@ -48,7 +45,7 @@ namespace SQLiteDBConnection
                 connect.Open();
                 using (System.Data.SQLite.SQLiteCommand fmd = connect.CreateCommand())
                 {
-                    fmd.CommandText = "SELECT name FROM sqlite_master WHERE type='table' and name != 'sqlite_sequence'";
+                    fmd.CommandText = "SELECT name FROM sqlite_master WHERE type='table' and name not in('sqlite_sequence','Authorization')";
                     fmd.CommandType = CommandType.Text;
                     System.Data.SQLite.SQLiteDataReader r = fmd.ExecuteReader();
                     while (r.Read())
