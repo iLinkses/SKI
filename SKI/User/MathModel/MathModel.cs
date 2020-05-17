@@ -8,18 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ZedGraph;
+using System.Data.SQLite;
 
 namespace SKI
 {
     struct Input
     {
-        public double mvx;
-        public double Tvx;
-        public double G;
-        public double Gk;
-        public double Ghl;
-        public double Thl;
-        public double ch2vx;
+        public double mvx, Tvx, G, Gk, Ghl, Thl, ch2vx;
+    }
+    struct Output
+    {
+       public double muni, pl, pm, m, T, ch2, d;
     }
 
     public partial class MathModel : Form
@@ -89,8 +88,29 @@ namespace SKI
                 Owner = this
             };
             calculation.Calculation(input.mvx, input.Tvx, input.G, input.Gk, input.Ghl, input.Thl, input.ch2vx);
+
+            if (cbControlES.Checked)
+            {
+                Output output;
+                output.muni = double.Parse(textBox1.Text);
+                output.pl = double.Parse(textBox9.Text);
+                output.pm = double.Parse(textBox10.Text);
+                output.m = double.Parse(textBox11.Text);
+                output.T = double.Parse(textBox12.Text);
+                output.ch2 = double.Parse(textBox13.Text);
+                output.d = double.Parse(textBox14.Text);
+                ControlES(output);
+            }
         }
 
+        /// <summary>
+        /// Метод проверяющий диапазон выходных параметров
+        /// </summary>
+        /// <param name="output">Структура выходных параметров</param>
+        private void ControlES(Output output)
+        {
+            MessageBox.Show(output.muni.ToString());
+        }
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();

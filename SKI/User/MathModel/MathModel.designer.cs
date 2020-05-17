@@ -108,6 +108,7 @@
             this.zedGraphControl6 = new ZedGraph.ZedGraphControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.zedGraphControl7 = new ZedGraph.ZedGraphControl();
+            this.cbControlES = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -168,6 +169,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.cbControlES);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -1078,6 +1080,16 @@
             this.zedGraphControl7.TabIndex = 0;
             this.zedGraphControl7.UseExtendedPrintDialog = true;
             // 
+            // cbControlES
+            // 
+            this.cbControlES.AutoSize = true;
+            this.cbControlES.Location = new System.Drawing.Point(481, 232);
+            this.cbControlES.Name = "cbControlES";
+            this.cbControlES.Size = new System.Drawing.Size(235, 21);
+            this.cbControlES.TabIndex = 4;
+            this.cbControlES.Text = "Контроль нештатных ситуаций";
+            this.cbControlES.UseVisualStyleBackColor = true;
+            // 
             // MathModel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1093,6 +1105,7 @@
             this.tabPage10.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1198,6 +1211,7 @@
         private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox cbControlES;
     }
 }
 
