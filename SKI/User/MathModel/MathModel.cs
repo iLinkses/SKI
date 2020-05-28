@@ -12,13 +12,29 @@ using System.Data.SQLite;
 
 namespace SKI
 {
-    struct Input
-    {
-        public double mvx, Tvx, G, Gk, Ghl, Thl, ch2vx;
-    }
+
 
     public partial class MathModel : Form
     {
+        readonly String dbFileName = "SKI.db";
+        SQLiteConnection m_dbConn;
+        SQLiteCommandBuilder sqlCommandBuilder;
+
+        /// <summary>
+        /// Структура входных параметров
+        /// </summary>
+        struct Input
+        {
+            public double mvx, Tvx, G, Gk, Ghl, Thl, ch2vx;
+        }
+        /// <summary>
+        /// Структура для диапазонов
+        /// </summary>
+        struct MinMax
+        {
+            public double min, max;
+        }
+
         public MathModel()
         {
             InitializeComponent();
@@ -56,10 +72,18 @@ namespace SKI
 
             return result;
         }
-        
 
         private void button1_Click(object sender, EventArgs e)
         {
+            //Перекраска текстбоксов
+            textBox1.BackColor = Color.FromArgb(-1);
+            textBox9.BackColor = Color.FromArgb(-1);
+            textBox10.BackColor = Color.FromArgb(-1);
+            textBox11.BackColor = Color.FromArgb(-1);
+            textBox12.BackColor = Color.FromArgb(-1);
+            textBox13.BackColor = Color.FromArgb(-1);
+            textBox14.BackColor = Color.FromArgb(-1);
+
             Input input = new Input();
             input.mvx = Convert.ToDouble(numericUpDown1.Value);
             input.Tvx = Convert.ToDouble(numericUpDown2.Value) + 273;
@@ -88,101 +112,148 @@ namespace SKI
             //Контроль нештатных ситуаций
             if (cbControlES.Checked)
             {
-                string Command = "SELECT TP.Parameter, (SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'muni' AND MinVal <=" + textBox1.Text.Replace(",", ".") + " AND MaxVal >=" + textBox1.Text.Replace(",", ".") + ")) as Value " +
-                                 "from Technological_Parameters TP " +
-                                 "where TP.Parameter in('muni') " +
-                                 "union " +
-                                 "SELECT TP.Parameter, (SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'pl' AND MinVal <= " + textBox9.Text.Replace(",", ".") + " AND MaxVal >=" + textBox9.Text.Replace(",", ".") + ")) as Value " +
-                                 "from Technological_Parameters TP " +
-                                 "where TP.Parameter in('pl') " +
-                                 "union " +
-                                 "SELECT TP.Parameter, (SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'pm' AND MinVal <= " + textBox10.Text.Replace(",", ".") + " AND MaxVal >=" + textBox10.Text.Replace(",", ".") + ")) as Value " +
-                                 "from Technological_Parameters TP " +
-                                 "where TP.Parameter in('pm') " +
-                                 "union " +
-                                 "SELECT TP.Parameter, (SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'm' AND MinVal <= " + textBox11.Text.Replace(",", ".") + " AND MaxVal >=" + textBox11.Text.Replace(",", ".") + ")) as Value " +
-                                 "from Technological_Parameters TP " +
-                                 "where TP.Parameter in('m') " +
-                                 "union " +
-                                 "SELECT TP.Parameter, (SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'T' AND MinVal <= " + textBox12.Text.Replace(",", ".") + " AND MaxVal >=" + textBox12.Text.Replace(",", ".") + ")) as Value " +
-                                 "from Technological_Parameters TP " +
-                                 "where TP.Parameter in('T') " +
-                                 "union " +
-                                 "SELECT TP.Parameter, (SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'ch2' AND MinVal <= " + textBox13.Text.Replace(",", ".") + " AND MaxVal >=" + textBox13.Text.Replace(",", ".") + ")) as Value " +
-                                 "from Technological_Parameters TP " +
-                                 "where TP.Parameter in('ch2') " +
-                                 "union " +
-                                 "SELECT TP.Parameter, (SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'd' AND MinVal <= " + textBox14.Text.Replace(",", ".") + " AND MaxVal >=" + textBox14.Text.Replace(",", ".") + ")) as Value " +
-                                 "from Technological_Parameters TP " +
-                                 "where TP.Parameter in('d')";
-                //"SELECT (SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'muni' AND MinVal <=" + textBox1.Text.Replace(",", ".") + " AND MaxVal >=" + textBox1.Text.Replace(",", ".") + ")) as muni, " +
-                //                        "(SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'pl' AND MinVal <= " + textBox9.Text.Replace(",", ".") + " AND MaxVal >=" + textBox9.Text.Replace(",", ".") + ")) as pl, " +
-                //                        "(SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'pm' AND MinVal <= " + textBox10.Text.Replace(",", ".") + " AND MaxVal >=" + textBox10.Text.Replace(",", ".") + ")) as pm, " +
-                //                        "(SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'm' AND MinVal <= " + textBox11.Text.Replace(",", ".") + " AND MaxVal >=" + textBox11.Text.Replace(",", ".") + ")) as m, " +
-                //                        "(SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'T' AND MinVal <= " + textBox12.Text.Replace(",", ".") + " AND MaxVal >=" + textBox12.Text.Replace(",", ".") + ")) as T, " +
-                //                        "(SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'ch2' AND MinVal <= " + textBox13.Text.Replace(",", ".") + " AND MaxVal >=" + textBox13.Text.Replace(",", ".") + ")) as ch2, " +
-                //                        "(SELECT EXISTS(SELECT * FROM Technological_Parameters TP WHERE TP.Parameter = 'd' AND MinVal <= " + textBox14.Text.Replace(",", ".") + " AND MaxVal >=" + textBox14.Text.Replace(",", ".") + ")) as d";
-                ControlES(Command);
+                ControlES();
+            }
+        }
+
+        private void ControlES()
+        {
+            Dictionary<int, double> Output = new Dictionary<int, double>(7);
+            Output.Add(1, double.Parse(textBox1.Text));
+            Output.Add(2, double.Parse(textBox9.Text));
+            Output.Add(3, double.Parse(textBox10.Text));
+            Output.Add(4, double.Parse(textBox11.Text));
+            Output.Add(5, double.Parse(textBox12.Text));
+            Output.Add(6, double.Parse(textBox13.Text));
+            Output.Add(7, double.Parse(textBox14.Text));
+            int check = 0;
+            //bool check = false;
+
+            List<MinMax> minmax = new List<MinMax>();
+            foreach (var p in Output)
+            {
+                minmax = GetMin_Max(p.Key);
+                if (p.Value < minmax[0].min || p.Value > minmax[0].max)
+                {
+                    SetColor(p.Key);
+                    MessageBox.Show("Параметр "+ p.Value + " вышел за допустимые нормы.\n\n" +GetES(p.Key),"Нештатная ситуация!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    check++;
+                }
+            }
+            if (check == 7)
+            {
+                MessageBox.Show("Все параметры в норме!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
         /// <summary>
-        /// Метод проверяющий диапазон выходных параметров
+        /// Метод возвращает минимальное и максимальное значение по ID параметра
         /// </summary>
-        /// <param name="Commands">Структура выходных параметров</param>
-        private void ControlES(string Command)
+        /// <param name="ID">ID параметра</param>
+        private List<MinMax> GetMin_Max(int ID)
         {
+            List<MinMax> minmax = new List<MinMax>();
 
-            String dbFileName = "SKI.db";
-            SQLiteConnection m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;");
+            m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;");
             m_dbConn.Open();
-            
+
             try
             {
                 if (m_dbConn.State != ConnectionState.Open)
                 {
                     MessageBox.Show("Open connection with database");
-                    return;
                 }
+                string Command = "select TP.MinVal, TP.MaxVal " +
+                                 "from Technological_Parameters TP " +
+                                 "where TP.ID = " + ID;
                 SQLiteDataAdapter sqlAdapter = new SQLiteDataAdapter(Command, m_dbConn);
-                SQLiteCommandBuilder sqlCommandBuilder = new SQLiteCommandBuilder(sqlAdapter);
+                sqlCommandBuilder = new SQLiteCommandBuilder(sqlAdapter);
 
                 DataTable dTable = new DataTable();
                 sqlAdapter.Fill(dTable);
-                //foreach (DataColumn column in dTable.Columns)
-                //    Console.Write("\t{0}", column.ColumnName);
-                //Console.WriteLine();
-                //// перебор всех строк таблицы
-                //foreach (DataRow row in dTable.Rows)
-                //{
-                //    // получаем все ячейки строки
-                //    var cells = row.ItemArray;
-                //    foreach (object cell in cells)
-                //        Console.Write("\t{0}", cell);
-                //    Console.WriteLine();
-                //}
-
-                var checkES = from r in dTable.AsEnumerable()
-                              where r.Field<long>("Value") == 0
-                              select r.Field<string>("Parameter");
-                foreach (var t in checkES)
-                {
-                    Console.WriteLine(t);
-                }
-                var testMuni = dTable.Rows[0][0].ToString();
+                minmax.Add(new MinMax() { min = double.Parse(dTable.Rows[0][0].ToString()), max = double.Parse(dTable.Rows[0][1].ToString()) });
             }
             catch (SQLiteException ex)
             {
                 MessageBox.Show("Error: " + ex.Message);
             }
-        }
-        private void searchES(DataTable dt)
-        {
 
+            m_dbConn.Close();
+
+            return minmax;
         }
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+
+        /// <summary>
+        /// Метод получает связку: ситуация->причина->рекомендация
+        /// </summary>
+        /// <param name="ID">ID параметра</param>
+        private string GetES(int ID)
         {
-            Close();
+            string ES = "";
+            m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;");
+            m_dbConn.Open();
+
+            try
+            {
+                if (m_dbConn.State != ConnectionState.Open)
+                {
+                    MessageBox.Show("Open connection with database");
+                }
+                string Command = "select TPES.Situation, TPRe.Reason, TPR.Recommendation " +
+                                 "from TP_Recommendations TPR " +
+                                 "inner join TP_Reasons TPRe on TPRe.ID = TPR.ID_Reasons " +
+                                 "inner join TP_ES TPES on TPES.ID = TPRe.ID_TP_ES " +
+                                 "where TPES.ID_TP = " + ID;
+                SQLiteDataAdapter sqlAdapter = new SQLiteDataAdapter(Command, m_dbConn);
+                sqlCommandBuilder = new SQLiteCommandBuilder(sqlAdapter);
+                DataTable dTable = new DataTable();
+                sqlAdapter.Fill(dTable);
+                if (dTable.Rows.Count != 0)
+                {
+                    int index = 1;
+                    ES = "Ситуация: " + dTable.Rows[0]["Situation"].ToString() +
+                         "\nПричины:\n";
+                    foreach (DataRow dr in dTable.Rows)
+                    {
+                        ES += index.ToString() + ". " + dr["Reason"].ToString() + "\n";
+                        ES += "Рекомендация: " + dr["Recommendation"].ToString() + "\n";
+                        index++;
+                    }
+                }
+                else
+                {
+                    ES = "Данный параметр вышел за допустимые нормы, но для него нет описания ¯\\_(ツ)_/¯";
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+            m_dbConn.Close();
+
+            return ES;
+        }
+
+        private void SetColor(int ID)
+        {
+            if (ID == 1)
+                textBox1.BackColor = Color.Red;
+            if (ID == 2)
+                textBox9.BackColor = Color.Red;
+            if (ID == 3)
+                textBox10.BackColor = Color.Red;
+            if(ID == 4)
+                textBox11.BackColor = Color.Red;
+            if(ID==5)
+                textBox12.BackColor = Color.Red;
+            if(ID==6)
+                textBox13.BackColor = Color.Red;
+            if(ID==7)
+                textBox14.BackColor = Color.Red;
         }
     }
 }
