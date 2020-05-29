@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using ZedGraph;
 
 /*********************************************************************
@@ -163,6 +165,7 @@ namespace SKI
             paneMuni.YAxis.Title.Text = "ед.";
             // Очистим список кривых на тот случай, если до этого сигналы уже были нарисованы
             paneMuni.CurveList.Clear();
+            MinMaxGraphs(paneMuni, 1);
             Graphs(paneMuni, muni);
 
             GraphPane panePl = main.zedGraphControl2.GraphPane;
@@ -170,6 +173,7 @@ namespace SKI
             panePl.XAxis.Title.Text = "мин.";
             panePl.YAxis.Title.Text = "ед.";
             panePl.CurveList.Clear();
+            MinMaxGraphs(panePl, 2);
             Graphs(panePl, pl);
 
             GraphPane panePm = main.zedGraphControl3.GraphPane;
@@ -177,6 +181,7 @@ namespace SKI
             panePm.XAxis.Title.Text = "мин.";
             panePm.YAxis.Title.Text = "ед.";
             panePm.CurveList.Clear();
+            MinMaxGraphs(panePm, 3);
             Graphs(panePm, pm);
 
             GraphPane paneM = main.zedGraphControl4.GraphPane;
@@ -184,6 +189,7 @@ namespace SKI
             paneM.XAxis.Title.Text = "мин.";
             paneM.YAxis.Title.Text = "%";
             paneM.CurveList.Clear();
+            MinMaxGraphs(paneM, 4);
             Graphs(paneM, m);
 
             GraphPane paneT = main.zedGraphControl5.GraphPane;
@@ -191,6 +197,7 @@ namespace SKI
             paneT.XAxis.Title.Text = "мин.";
             paneT.YAxis.Title.Text = "°C";
             paneT.CurveList.Clear();
+            MinMaxGraphs(paneT, 5);
             Graphs(paneT, T);
 
             GraphPane paneCh2 = main.zedGraphControl6.GraphPane;
@@ -198,6 +205,7 @@ namespace SKI
             paneCh2.XAxis.Title.Text = "мин.";
             paneCh2.YAxis.Title.Text = "%";
             paneCh2.CurveList.Clear();
+            MinMaxGraphs(paneCh2, 6);
             Graphs(paneCh2, ch2);
 
             GraphPane paneD = main.zedGraphControl7.GraphPane;
@@ -205,6 +213,7 @@ namespace SKI
             paneD.XAxis.Title.Text = "мин.";
             paneD.YAxis.Title.Text = "%";
             paneD.CurveList.Clear();
+            MinMaxGraphs(paneD, 7);
             Graphs(paneD, d);
 
             // Вызываем метод AxisChange (), чтобы обновить данные об осях. 
@@ -228,6 +237,7 @@ namespace SKI
         }
         #endregion
 
+        //Сделать отрисовку главного графика во весь экран (скрыть масштабирование пороговых диапазонов)
         #region Отрисовка графика
         /// <summary>
         /// Отрисовка графика
@@ -265,7 +275,7 @@ namespace SKI
 
             // Задаем вид пунктирной линии для крупных рисок по оси X:
             // Длина штрихов равна 10 пикселям, ... 
-            pane.XAxis.MajorGrid.DashOn = 10;
+            pane.XAxis.MajorGrid.DashOn = 5;
             // затем 5 пикселей - пропуск
             pane.XAxis.MajorGrid.DashOff = 5;
 
@@ -273,7 +283,7 @@ namespace SKI
             pane.YAxis.MajorGrid.IsVisible = true;
 
             // Аналогично задаем вид пунктирной линии для крупных рисок по оси Y
-            pane.YAxis.MajorGrid.DashOn = 10;
+            pane.YAxis.MajorGrid.DashOn = 5;
             pane.YAxis.MajorGrid.DashOff = 5;
 
             // Включаем отображение сетки напротив мелких рисок по оси X
@@ -292,6 +302,33 @@ namespace SKI
             // Аналогично задаем вид пунктирной линии для крупных рисок по оси Y
             pane.XAxis.MinorGrid.DashOn = 1;
             pane.XAxis.MinorGrid.DashOff = 2;
+        }
+        #endregion
+        #region Отрисовка пороговых диапазонов
+        private void MinMaxGraphs(GraphPane pane, int ID)
+        {
+            MathModel main = Owner as MathModel;
+            List<MathModel.MinMax> minmax = new List<MathModel.MinMax>();
+            minmax = main.GetMin_Max(ID);
+
+            PointPairList MinPoints = new PointPairList();
+            for (int j = 1; j <= n; j++)
+            {
+                MinPoints.Add(h * j * 60, minmax[0].min);
+            }
+
+            PointPairList MaxPoints = new PointPairList();
+            for (int j = 1; j <= n; j++)
+            {
+                MaxPoints.Add(h * j * 60, minmax[0].max);
+            }
+            LineItem MinCurve = pane.AddCurve("", MinPoints, Color.Blue, SymbolType.None);
+            LineItem MaxCurve = pane.AddCurve("", MaxPoints, Color.Blue, SymbolType.None);
+
+            MinCurve.Line.Style = DashStyle.Dash;
+            MinCurve.Line.Width = 3;
+            MaxCurve.Line.Style = DashStyle.Dash;
+            MaxCurve.Line.Width = 3;
         }
         #endregion
     }

@@ -30,7 +30,7 @@ namespace SKI
         /// <summary>
         /// Структура для диапазонов
         /// </summary>
-        struct MinMax
+        public struct MinMax
         {
             public double min, max;
         }
@@ -153,7 +153,7 @@ namespace SKI
         /// Метод возвращает минимальное и максимальное значение по ID параметра
         /// </summary>
         /// <param name="ID">ID параметра</param>
-        private List<MinMax> GetMin_Max(int ID)
+        public List<MinMax> GetMin_Max(int ID)
         {
             List<MinMax> minmax = new List<MinMax>();
 
