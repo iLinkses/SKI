@@ -46,7 +46,7 @@
             this.модульToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -56,7 +56,7 @@
             this.математическаяМодельToolStripMenuItem,
             this.определениеНештатныхСитуацийToolStripMenuItem});
             this.модульToolStripMenuItem.Name = "модульToolStripMenuItem";
-            this.модульToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
+            this.модульToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.модульToolStripMenuItem.Text = "Модуль";
             // 
             // математическаяМодельToolStripMenuItem
@@ -103,6 +103,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "SKI";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);

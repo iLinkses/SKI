@@ -136,9 +136,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Images\Мнемосхема.png" />
     <Content Include="License-LGPL.txt" />
     <None Include="Товарный знак 32х32.ico" />
-    <None Include="Мнемосхема.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Authorization\Authorization.csproj">
@@ -150,6 +150,7 @@
       <Name>SQLiteDBConnection</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

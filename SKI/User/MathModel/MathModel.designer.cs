@@ -29,10 +29,33 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MathModel));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown11 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown10 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown9 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Parameter = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MinVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaxVal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label47 = new System.Windows.Forms.Label();
+            this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
+            this.label46 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
+            this.cbControlES = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
@@ -108,11 +131,21 @@
             this.zedGraphControl6 = new ZedGraph.ZedGraphControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.zedGraphControl7 = new ZedGraph.ZedGraphControl();
-            this.cbControlES = new System.Windows.Forms.CheckBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
@@ -131,6 +164,7 @@
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -147,6 +181,14 @@
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.numericUpDown14);
+            this.tabPage10.Controls.Add(this.numericUpDown13);
+            this.tabPage10.Controls.Add(this.numericUpDown12);
+            this.tabPage10.Controls.Add(this.numericUpDown11);
+            this.tabPage10.Controls.Add(this.numericUpDown10);
+            this.tabPage10.Controls.Add(this.numericUpDown9);
+            this.tabPage10.Controls.Add(this.numericUpDown8);
+            this.tabPage10.Controls.Add(this.dataGridView1);
             this.tabPage10.Controls.Add(this.pictureBox1);
             this.tabPage10.Location = new System.Drawing.Point(4, 25);
             this.tabPage10.Name = "tabPage10";
@@ -156,20 +198,259 @@
             this.tabPage10.Text = "Мнемосхема";
             this.tabPage10.UseVisualStyleBackColor = true;
             // 
+            // numericUpDown14
+            // 
+            this.numericUpDown14.Location = new System.Drawing.Point(615, 577);
+            this.numericUpDown14.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.numericUpDown14.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown14.Name = "numericUpDown14";
+            this.numericUpDown14.Size = new System.Drawing.Size(54, 22);
+            this.numericUpDown14.TabIndex = 11;
+            this.numericUpDown14.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown13
+            // 
+            this.numericUpDown13.Location = new System.Drawing.Point(522, 577);
+            this.numericUpDown13.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown13.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            this.numericUpDown13.Name = "numericUpDown13";
+            this.numericUpDown13.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown13.TabIndex = 10;
+            // 
+            // numericUpDown12
+            // 
+            this.numericUpDown12.DecimalPlaces = 2;
+            this.numericUpDown12.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown12.Location = new System.Drawing.Point(426, 577);
+            this.numericUpDown12.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            65536});
+            this.numericUpDown12.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown12.Name = "numericUpDown12";
+            this.numericUpDown12.Size = new System.Drawing.Size(63, 22);
+            this.numericUpDown12.TabIndex = 9;
+            this.numericUpDown12.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            // 
+            // numericUpDown11
+            // 
+            this.numericUpDown11.DecimalPlaces = 2;
+            this.numericUpDown11.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.numericUpDown11.Location = new System.Drawing.Point(335, 577);
+            this.numericUpDown11.Maximum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            this.numericUpDown11.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numericUpDown11.Name = "numericUpDown11";
+            this.numericUpDown11.Size = new System.Drawing.Size(63, 22);
+            this.numericUpDown11.TabIndex = 8;
+            this.numericUpDown11.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown10
+            // 
+            this.numericUpDown10.DecimalPlaces = 1;
+            this.numericUpDown10.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numericUpDown10.Location = new System.Drawing.Point(244, 577);
+            this.numericUpDown10.Maximum = new decimal(new int[] {
+            9,
+            0,
+            0,
+            0});
+            this.numericUpDown10.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+            this.numericUpDown10.Name = "numericUpDown10";
+            this.numericUpDown10.Size = new System.Drawing.Size(53, 22);
+            this.numericUpDown10.TabIndex = 7;
+            this.numericUpDown10.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown9
+            // 
+            this.numericUpDown9.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown9.Location = new System.Drawing.Point(152, 577);
+            this.numericUpDown9.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown9.Name = "numericUpDown9";
+            this.numericUpDown9.Size = new System.Drawing.Size(49, 22);
+            this.numericUpDown9.TabIndex = 6;
+            this.numericUpDown9.Value = new decimal(new int[] {
+            30,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown8
+            // 
+            this.numericUpDown8.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Location = new System.Drawing.Point(58, 577);
+            this.numericUpDown8.Maximum = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown8.Name = "numericUpDown8";
+            this.numericUpDown8.Size = new System.Drawing.Size(52, 22);
+            this.numericUpDown8.TabIndex = 5;
+            this.numericUpDown8.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Info;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Parameter,
+            this.MinVal,
+            this.MaxVal,
+            this.Value});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.RowHeadersWidth = 51;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(718, 153);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // Parameter
+            // 
+            this.Parameter.DataPropertyName = "Parameter";
+            this.Parameter.FillWeight = 350F;
+            this.Parameter.HeaderText = "Параметр";
+            this.Parameter.MinimumWidth = 6;
+            this.Parameter.Name = "Parameter";
+            this.Parameter.ReadOnly = true;
+            // 
+            // MinVal
+            // 
+            this.MinVal.DataPropertyName = "MinVal";
+            this.MinVal.HeaderText = "Мин. значение";
+            this.MinVal.MinimumWidth = 6;
+            this.MinVal.Name = "MinVal";
+            this.MinVal.ReadOnly = true;
+            // 
+            // MaxVal
+            // 
+            this.MaxVal.DataPropertyName = "MaxVal";
+            this.MaxVal.HeaderText = "Макс. значение";
+            this.MaxVal.MinimumWidth = 6;
+            this.MaxVal.Name = "MaxVal";
+            this.MaxVal.ReadOnly = true;
+            // 
+            // Value
+            // 
+            this.Value.DataPropertyName = "Value";
+            this.Value.HeaderText = "Текущее значение";
+            this.Value.MinimumWidth = 6;
+            this.Value.Name = "Value";
+            this.Value.ReadOnly = true;
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::SKI.Properties.Resources.Мнемосхема;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 162);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(718, 600);
+            this.pictureBox1.Size = new System.Drawing.Size(718, 441);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.cbControlES);
+            this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.groupBox2);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -180,6 +461,111 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Расчет";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Location = new System.Drawing.Point(170, 18);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(16, 17);
+            this.label47.TabIndex = 39;
+            this.label47.Text = "=";
+            // 
+            // numericUpDown16
+            // 
+            this.numericUpDown16.Location = new System.Drawing.Point(192, 44);
+            this.numericUpDown16.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericUpDown16.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown16.Name = "numericUpDown16";
+            this.numericUpDown16.Size = new System.Drawing.Size(76, 22);
+            this.numericUpDown16.TabIndex = 38;
+            this.numericUpDown16.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(170, 46);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(16, 17);
+            this.label46.TabIndex = 37;
+            this.label46.Text = "=";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(136, 46);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(28, 17);
+            this.label45.TabIndex = 35;
+            this.label45.Text = "tau";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(7, 46);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(123, 17);
+            this.label44.TabIndex = 36;
+            this.label44.Text = "Расчетное время";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(7, 18);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(32, 17);
+            this.label43.TabIndex = 35;
+            this.label43.Text = "Шаг";
+            // 
+            // numericUpDown15
+            // 
+            this.numericUpDown15.DecimalPlaces = 2;
+            this.numericUpDown15.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown15.Location = new System.Drawing.Point(192, 16);
+            this.numericUpDown15.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown15.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.numericUpDown15.Name = "numericUpDown15";
+            this.numericUpDown15.Size = new System.Drawing.Size(76, 22);
+            this.numericUpDown15.TabIndex = 9;
+            this.numericUpDown15.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            // 
+            // cbControlES
+            // 
+            this.cbControlES.AutoSize = true;
+            this.cbControlES.Location = new System.Drawing.Point(10, 73);
+            this.cbControlES.Name = "cbControlES";
+            this.cbControlES.Size = new System.Drawing.Size(235, 21);
+            this.cbControlES.TabIndex = 4;
+            this.cbControlES.Text = "Контроль нештатных ситуаций";
+            this.cbControlES.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -1080,15 +1466,22 @@
             this.zedGraphControl7.TabIndex = 0;
             this.zedGraphControl7.UseExtendedPrintDialog = true;
             // 
-            // cbControlES
+            // groupBox3
             // 
-            this.cbControlES.AutoSize = true;
-            this.cbControlES.Location = new System.Drawing.Point(481, 232);
-            this.cbControlES.Name = "cbControlES";
-            this.cbControlES.Size = new System.Drawing.Size(235, 21);
-            this.cbControlES.TabIndex = 4;
-            this.cbControlES.Text = "Контроль нештатных ситуаций";
-            this.cbControlES.UseVisualStyleBackColor = true;
+            this.groupBox3.Controls.Add(this.label47);
+            this.groupBox3.Controls.Add(this.cbControlES);
+            this.groupBox3.Controls.Add(this.label44);
+            this.groupBox3.Controls.Add(this.numericUpDown16);
+            this.groupBox3.Controls.Add(this.numericUpDown15);
+            this.groupBox3.Controls.Add(this.label43);
+            this.groupBox3.Controls.Add(this.label46);
+            this.groupBox3.Controls.Add(this.label45);
+            this.groupBox3.Location = new System.Drawing.Point(443, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(273, 259);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Дополнительные настройки";
             // 
             // MathModel
             // 
@@ -1101,11 +1494,21 @@
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Динамическая модель получения СКИ";
+            this.Load += new System.EventHandler(this.MathModel_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -1126,6 +1529,8 @@
             this.tabPage7.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1212,6 +1617,26 @@
         private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox cbControlES;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.NumericUpDown numericUpDown8;
+        private System.Windows.Forms.NumericUpDown numericUpDown10;
+        private System.Windows.Forms.NumericUpDown numericUpDown9;
+        private System.Windows.Forms.NumericUpDown numericUpDown14;
+        private System.Windows.Forms.NumericUpDown numericUpDown13;
+        private System.Windows.Forms.NumericUpDown numericUpDown12;
+        private System.Windows.Forms.NumericUpDown numericUpDown11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Parameter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MinVal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaxVal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Value;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.GroupBox groupBox3;
+        public System.Windows.Forms.NumericUpDown numericUpDown15;
+        public System.Windows.Forms.NumericUpDown numericUpDown16;
     }
 }
 

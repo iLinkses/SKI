@@ -255,5 +255,39 @@ namespace SKI
             if(ID==7)
                 textBox14.BackColor = Color.Red;
         }
+
+        private void MathModel_Load(object sender, EventArgs e)
+        {
+            m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;");
+            m_dbConn.Open();
+
+            try
+            {
+                if (m_dbConn.State != ConnectionState.Open)
+                {
+                    MessageBox.Show("Open connection with database");
+                }
+                string Command = "select TP.Parameter, " +
+                                        "TP.MinVal, " +
+                                        "TP.MaxVal, " +
+                                        "TP.Value " +
+                                 "from Technological_Parameters TP " +
+                                 "where TP.Type = 'Входной'";
+                SQLiteDataAdapter sqlAdapter = new SQLiteDataAdapter(Command, m_dbConn);
+                sqlCommandBuilder = new SQLiteCommandBuilder(sqlAdapter);
+
+                DataTable dTable = new DataTable();
+                sqlAdapter.Fill(dTable);
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = dTable;
+                dataGridView1.DataSource = bindingSource;
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+            m_dbConn.Close();
+        }
     }
 }

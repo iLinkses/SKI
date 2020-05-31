@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
+using System.Windows.Forms;
 using ZedGraph;
 
 /*********************************************************************
@@ -19,29 +23,9 @@ namespace SKI
     {
         public MathModel Owner;
 
-        //---Вектор входных переменных---
-        double V = 4.1; //Объем реактора
-        double alfa = 1.22; //Активность катализатора
-        double beta = 0.3;  //Коэффициент, учитывающий примеси в шихте
-        double cp = 0.55; //Теплоемкость реакционной смеси
-        double A = 0.5; //Коэффициент, учитывающий гидродинамические характеристики реактора
-        double s = 12; //Поверхность теплосъема
-        double chl = 0.6; //теплоемкость хладоагента
-        double ro = 630; //Плотность реакционной смеси
-        double q = 263; //Тепловой эффект реакции
-
-        //---Вектор параметров модели---
-        //double E = 10000;
-        double R = 8.314; //Универсальная газовая постоянная
-        double k0 = 500000000; //Константа для расчета скорости реакции полимеризаии
-        double k1 = 10.0; //Константа для расчета скорости реакции полимеризаии
-        double k2 = 1.3; //Константа для расчета скорости реакции полимеризаии
-        double u = 40; //Коэффициент теплопередачи
-        double kh = 1.56; //Коэффициент для расчета реакции переноса цепи по водороду
-
-        static double h = 0.1;
-        static double tau = 3;
-        int n = Convert.ToInt32(tau / h);
+        static double h;//0.1;
+        static double tau;//3;
+        static int n;//Convert.ToInt32(tau / h);
 
         #region Расчет СКИ
         /// <summary>
@@ -56,6 +40,33 @@ namespace SKI
         /// <param name="ch2vx"></param>
         public void Calculation(double mvx, double Tvx, double G, double Gk, double Ghl, double Thl, double ch2vx)
         {
+            MathModel main = Owner as MathModel;
+            h = Convert.ToDouble(main.numericUpDown15.Value);
+            tau = Convert.ToDouble(main.numericUpDown16.Value);
+            n = Convert.ToInt32(tau / h);
+
+            //---Вектор входных переменных---
+            double V = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 14).Select(p => p.Field<double>("Value")).Single();//4.1; //Объем реактора
+            double alfa = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 15).Select(p => p.Field<double>("Value")).Single();//1.22; //Активность катализатора
+            double beta = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 16).Select(p => p.Field<double>("Value")).Single();//0.3;  //Коэффициент, учитывающий примеси в шихте
+            double cp = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 17).Select(p => p.Field<double>("Value")).Single();//0.55; //Теплоемкость реакционной смеси
+            double A = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 18).Select(p => p.Field<double>("Value")).Single();//0.5; //Коэффициент, учитывающий гидродинамические характеристики реактора
+            double s = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 19).Select(p => p.Field<double>("Value")).Single();//12; //Поверхность теплосъема
+            double chl = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 20).Select(p => p.Field<double>("Value")).Single();//0.6; //теплоемкость хладагента
+            double ro = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 21).Select(p => p.Field<double>("Value")).Single();//630; //Плотность реакционной смеси
+            double q = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 22).Select(p => p.Field<double>("Value")).Single();//263; //Тепловой эффект реакции
+
+            Console.WriteLine($"{V} {alfa} {beta} {cp} {A} {s} {chl} {ro} {q}") ;
+
+            //---Вектор параметров модели---
+            //double E = 10000;
+            double R = 8.314; //Универсальная газовая постоянная
+            double k0 = 500000000; //Константа для расчета скорости реакции полимеризаии
+            double k1 = 10.0; //Константа для расчета скорости реакции полимеризаии
+            double k2 = 1.3; //Константа для расчета скорости реакции полимеризаии
+            double u = 40; //Коэффициент теплопередачи
+            double kh = 1.56; //Коэффициент для расчета реакции переноса цепи по водороду
+
             double[] tp = new double[n + 1];
             double[] micp0 = new double[n + 1]; //Среднеинтегральные значения мономера
             double[] Tcp0 = new double[n + 1]; //Среднеинтегральные значения температуры
@@ -115,12 +126,12 @@ namespace SKI
                 pl[j] = 20 * Math.Exp(50 / Tcp0[j]) / muni[j];
                 pm[j] = Gk * d[j - 1] / m[j];
 
-                if (ch2[j] < 0) ch2[j] = 0;
-                if (d[j] < 0) d[j] = 0;
-                if (m[j] < 0) m[j] = 0;
-                if (pm[j] < 0) pm[j] = 0;
+                //if (ch2[j] < 0) ch2[j] = 0;
+                //if (d[j] < 0) d[j] = 0;
+                //if (m[j] < 0) m[j] = 0;
+                //if (pm[j] < 0) pm[j] = 0;
             }
-            MathModel main = Owner as MathModel;
+            
             main.textBox1.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
             main.textBox9.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
             main.textBox10.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
@@ -130,8 +141,8 @@ namespace SKI
             main.textBox14.Text = Convert.ToString(string.Format("{0:N2}", d[n]));
 
             //Уменьшение выходной температура на 200 для графика
-            double[] TClone = new double[n+1];
-            Array.Copy(T, TClone, n+1);
+            double[] TClone = new double[n + 1];
+            Array.Copy(T, TClone, n + 1);
             for (int j = 0; j <= n; j++)
             {
                 TClone[j] = TClone[j] - 200;
@@ -140,6 +151,37 @@ namespace SKI
             DrawGraph(muni, pl, pm, m, TClone, ch2, d);
         }
         #endregion
+
+        private DataTable GetParameters(string type)
+        {
+            DataTable dTable = new DataTable();
+            String dbFileName = "SKI.db";
+            SQLiteConnection m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;");
+            m_dbConn.Open();
+
+            try
+            {
+                if (m_dbConn.State != ConnectionState.Open)
+                {
+                    MessageBox.Show("Open connection with database");
+                }
+                string Command = "select TP.ID, TP. Value " +
+                                 "from Technological_Parameters TP " +
+                                 "where TP.Type = '" + type + "'";
+                SQLiteDataAdapter sqlAdapter = new SQLiteDataAdapter(Command, m_dbConn);
+                SQLiteCommandBuilder sqlCommandBuilder = new SQLiteCommandBuilder(sqlAdapter);
+
+                
+                sqlAdapter.Fill(dTable);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+            m_dbConn.Close();
+            return dTable;
+        }
 
         #region Добавление графиков
         /// <summary>
@@ -270,6 +312,28 @@ namespace SKI
             pane.XAxis.Scale.Min = h * 60;
             pane.XAxis.Scale.Max = h * n * 60;
 
+            ////Интервал по Y
+            //var ArrWitout0 = parameter.Where(t => t != 0);
+            //int znam;
+            //if (ArrWitout0.Min() > 10)
+            //{
+            //    znam = 10;
+            //}
+            //else
+            //{
+            //    znam = 2;
+            //}
+            //if(ArrWitout0.First() < ArrWitout0.Last())
+            //{
+            //    pane.YAxis.Scale.Min = ArrWitout0.Min() - Math.Abs(ArrWitout0.Min() / znam);
+            //    pane.YAxis.Scale.Max = ArrWitout0.Max() + Math.Abs(ArrWitout0.Min() / znam);
+            //}
+            //else
+            //{
+            //    pane.YAxis.Scale.Min = ArrWitout0.Min() - Math.Abs(ArrWitout0.Max() / znam);
+            //    pane.YAxis.Scale.Max = ArrWitout0.Max() + Math.Abs(ArrWitout0.Max() / znam);
+            //}
+
             // Включаем отображение сетки напротив крупных рисок по оси X
             pane.XAxis.MajorGrid.IsVisible = true;
 
@@ -324,6 +388,7 @@ namespace SKI
             }
             LineItem MinCurve = pane.AddCurve("", MinPoints, Color.Blue, SymbolType.None);
             LineItem MaxCurve = pane.AddCurve("", MaxPoints, Color.Blue, SymbolType.None);
+
 
             MinCurve.Line.Style = DashStyle.Dash;
             MinCurve.Line.Width = 3;
