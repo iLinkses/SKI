@@ -23,8 +23,8 @@ namespace SKI
             {
                 математическаяМодельToolStripMenuItem.Checked = true;
                 математическаяМодельToolStripMenuItem.Enabled = false;
-                определениеНештатныхСитуацийToolStripMenuItem.Checked = false;
-                определениеНештатныхСитуацийToolStripMenuItem.Enabled = true;
+                СправочныйМатериалToolStripMenuItem.Checked = false;
+                СправочныйМатериалToolStripMenuItem.Enabled = true;
                 MathModel MathModel = new MathModel();
                 MathModel.MdiParent = this;
                 this.SetClientSizeCore(MathModel.Width + 4, MathModel.Height + 20 + 26 + 4);
@@ -48,8 +48,8 @@ namespace SKI
         {
             математическаяМодельToolStripMenuItem.Checked = true;
             математическаяМодельToolStripMenuItem.Enabled = false;
-            определениеНештатныхСитуацийToolStripMenuItem.Checked = false;
-            определениеНештатныхСитуацийToolStripMenuItem.Enabled = true;
+            СправочныйМатериалToolStripMenuItem.Checked = false;
+            СправочныйМатериалToolStripMenuItem.Enabled = true;
             ActiveMdiChild.Close();
             MathModel MathModel = new MathModel();
             MathModel.MdiParent = this;
@@ -59,18 +59,19 @@ namespace SKI
             MathModel.Show();
         }
 
-        private void определениеНештатныхСитуацийToolStripMenuItem_Click(object sender, EventArgs e)
+        private void СправочныйМатериалToolStripMenuItem_Click(object sender, EventArgs e)
         {
             математическаяМодельToolStripMenuItem.Checked = false;
             математическаяМодельToolStripMenuItem.Enabled = true;
-            определениеНештатныхСитуацийToolStripMenuItem.Checked = true;
-            определениеНештатныхСитуацийToolStripMenuItem.Enabled = false;
+            СправочныйМатериалToolStripMenuItem.Checked = true;
+            СправочныйМатериалToolStripMenuItem.Enabled = false;
             ActiveMdiChild.Close();
             ESForm eSForm = new ESForm();
             eSForm.MdiParent = this;
             this.SetClientSizeCore(eSForm.Width + 4, eSForm.Height + 20 + 26 + 4);
-            toolStripStatusLabel1.Text = "Определение нештатных ситуаций";
+            toolStripStatusLabel1.Text = "Справочный материал";
             eSForm.Show();
-        }  
+        }
+
     }
 }

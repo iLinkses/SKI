@@ -75,44 +75,65 @@ namespace SKI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Перекраска текстбоксов
-            textBox1.BackColor = Color.FromArgb(-1);
-            textBox9.BackColor = Color.FromArgb(-1);
-            textBox10.BackColor = Color.FromArgb(-1);
-            textBox11.BackColor = Color.FromArgb(-1);
-            textBox12.BackColor = Color.FromArgb(-1);
-            textBox13.BackColor = Color.FromArgb(-1);
-            textBox14.BackColor = Color.FromArgb(-1);
-
-            Input input = new Input();
-            input.mvx = Convert.ToDouble(numericUpDown1.Value);
-            input.Tvx = Convert.ToDouble(numericUpDown2.Value) + 273;
-            input.G = Convert.ToDouble(numericUpDown3.Value);
-            input.Gk = Convert.ToDouble(numericUpDown4.Value);
-            input.Ghl = Convert.ToDouble(numericUpDown5.Value);
-            input.Thl = Convert.ToDouble(numericUpDown6.Value) + 273;
-            input.ch2vx = Convert.ToDouble(numericUpDown7.Value) / 100;
-
-            //Очистка боксов для выходных параметров
-            textBox1.Clear();
-            textBox9.Clear();
-            textBox10.Clear();
-            textBox11.Clear();
-            textBox12.Clear();
-            textBox13.Clear();
-            textBox14.Clear();
-
-            //Расчеты
-            Сalculation calculation = new Сalculation
+            if (tabControl1.SelectedTab == tabPage10)
             {
-                Owner = this
-            };
-            calculation.Calculation(input.mvx, input.Tvx, input.G, input.Gk, input.Ghl, input.Thl, input.ch2vx);
+                Input input = new Input();
+                input.mvx = Convert.ToDouble(numericUpDown8.Value);
+                input.Tvx = Convert.ToDouble(numericUpDown9.Value) + 273;
+                input.G = Convert.ToDouble(numericUpDown10.Value);
+                input.Gk = Convert.ToDouble(numericUpDown11.Value);
+                input.Ghl = Convert.ToDouble(numericUpDown12.Value);
+                input.Thl = Convert.ToDouble(numericUpDown13.Value) + 273;
+                input.ch2vx = Convert.ToDouble(numericUpDown14.Value) / 100;
 
-            //Контроль нештатных ситуаций
-            if (cbControlES.Checked)
+                //Расчеты
+                Сalculation calculation = new Сalculation
+                {
+                    Owner = this
+                };
+                calculation.Calculation(input.mvx, input.Tvx, input.G, input.Gk, input.Ghl, input.Thl, input.ch2vx);
+            }
+            if (tabControl1.SelectedTab == tabPage1 || tabControl1.SelectedTab == tabPage11)
             {
-                ControlES();
+                //Перекраска текстбоксов
+                textBox1.BackColor = Color.FromArgb(-1);
+                textBox9.BackColor = Color.FromArgb(-1);
+                textBox10.BackColor = Color.FromArgb(-1);
+                textBox11.BackColor = Color.FromArgb(-1);
+                textBox12.BackColor = Color.FromArgb(-1);
+                textBox13.BackColor = Color.FromArgb(-1);
+                textBox14.BackColor = Color.FromArgb(-1);
+
+                Input input = new Input();
+                input.mvx = Convert.ToDouble(numericUpDown1.Value);
+                input.Tvx = Convert.ToDouble(numericUpDown2.Value) + 273;
+                input.G = Convert.ToDouble(numericUpDown3.Value);
+                input.Gk = Convert.ToDouble(numericUpDown4.Value);
+                input.Ghl = Convert.ToDouble(numericUpDown5.Value);
+                input.Thl = Convert.ToDouble(numericUpDown6.Value) + 273;
+                input.ch2vx = Convert.ToDouble(numericUpDown7.Value) / 100;
+
+                //Очистка боксов для выходных параметров
+                textBox1.Clear();
+                textBox9.Clear();
+                textBox10.Clear();
+                textBox11.Clear();
+                textBox12.Clear();
+                textBox13.Clear();
+                textBox14.Clear();
+
+                //Расчеты
+                Сalculation calculation = new Сalculation
+                {
+                    Owner = this
+                };
+                calculation.Calculation(input.mvx, input.Tvx, input.G, input.Gk, input.Ghl, input.Thl, input.ch2vx);
+
+                //Контроль нештатных ситуаций
+                if (cbControlES.Checked)
+                {
+                    ControlES();
+                }
             }
         }
 
@@ -136,7 +157,7 @@ namespace SKI
                 if (p.Value < minmax[0].min || p.Value > minmax[0].max)
                 {
                     SetColor(p.Key);
-                    MessageBox.Show("Параметр "+ p.Value + " вышел за допустимые нормы.\n\n" +GetES(p.Key),"Нештатная ситуация!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Параметр " + p.Value + " вышел за допустимые нормы.\n\n" + GetES(p.Key), "Нештатная ситуация!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -246,13 +267,13 @@ namespace SKI
                 textBox9.BackColor = Color.Red;
             if (ID == 3)
                 textBox10.BackColor = Color.Red;
-            if(ID == 4)
+            if (ID == 4)
                 textBox11.BackColor = Color.Red;
-            if(ID==5)
+            if (ID == 5)
                 textBox12.BackColor = Color.Red;
-            if(ID==6)
+            if (ID == 6)
                 textBox13.BackColor = Color.Red;
-            if(ID==7)
+            if (ID == 7)
                 textBox14.BackColor = Color.Red;
         }
 
@@ -288,6 +309,107 @@ namespace SKI
             }
 
             m_dbConn.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            button1_Click(sender, e);
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                textBox6.Text = "Вязкость по Муни > min" + Environment.NewLine +
+                                "0.3 < Пластичность по Карреру < 2" + Environment.NewLine +
+                                "0 < Потери массы < 0.5";
+                textBox7.Text = "Оптимальные управляющие параметры:" + Environment.NewLine +
+                                label2.Text + "\t\t" + label11.Text + " " + label34.Text + " 5" + Environment.NewLine +
+                                label3.Text + "\t\t\t" + label12.Text + " " + label35.Text + " 100" + Environment.NewLine +
+                                label4.Text + "\t\t\t\t" + label13.Text + " " + label36.Text + " 5" + Environment.NewLine +
+                                label5.Text + "\t" + label14.Text + " " + label37.Text + " 1" + Environment.NewLine +
+                                label6.Text + "\t\t\t" + label15.Text + " " + label38.Text + " 0,22" + Environment.NewLine +
+                                label7.Text + "\t\t" + label16.Text + " " + label39.Text + " -4" + Environment.NewLine +
+                                label8.Text + "\t\t" + label17.Text + " " + label40.Text + " 8";
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                textBox6.Text = "Пластичность по Карреру > min" + Environment.NewLine +
+                                "20 < Вязкость по Муни < 60" + Environment.NewLine +
+                                "0 < Потери массы < 0.5";
+                textBox7.Text = "Оптимальные управляющие параметры:" + Environment.NewLine +
+                                label2.Text + "\t\t" + label11.Text + " " + label34.Text + " 5" + Environment.NewLine +
+                                label3.Text + "\t\t\t" + label12.Text + " " + label35.Text + " 10" + Environment.NewLine +
+                                label4.Text + "\t\t\t\t" + label13.Text + " " + label36.Text + " 8" + Environment.NewLine +
+                                label5.Text + "\t" + label14.Text + " " + label37.Text + " 2" + Environment.NewLine +
+                                label6.Text + "\t\t\t" + label15.Text + " " + label38.Text + " 0,3" + Environment.NewLine +
+                                label7.Text + "\t\t" + label16.Text + " " + label39.Text + " -10" + Environment.NewLine +
+                                label8.Text + "\t\t" + label17.Text + " " + label40.Text + " 20";
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                textBox6.Text = "Потери массы > min" + Environment.NewLine +
+                                "20 < Вязкость по Муни < 60" + Environment.NewLine +
+                                "0.3 < Пластичность по Карреру < 2";
+                textBox7.Text = "Оптимальные управляющие параметры:" + Environment.NewLine +
+                                label2.Text + "\t\t" + label11.Text + " " + label34.Text + " 30" + Environment.NewLine +
+                                label3.Text + "\t\t\t" + label12.Text + " " + label35.Text + " 35" + Environment.NewLine +
+                                label4.Text + "\t\t\t\t" + label13.Text + " " + label36.Text + " 0,5" + Environment.NewLine +
+                                label5.Text + "\t" + label14.Text + " " + label37.Text + " 0,5" + Environment.NewLine +
+                                label6.Text + "\t\t\t" + label15.Text + " " + label38.Text + " 0,03" + Environment.NewLine +
+                                label7.Text + "\t\t" + label16.Text + " " + label39.Text + " 10" + Environment.NewLine +
+                                label8.Text + "\t\t" + label17.Text + " " + label40.Text + " 1";
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var messageBox = MessageBox.Show("Вы уверены что хотите принять оптимальные управляющие воздействия?", "Оптимизация", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (messageBox == DialogResult.Yes)
+            {
+                if (radioButton1.Checked)
+                {
+                    numericUpDown1.Value = 5;
+                    numericUpDown2.Value = 100;
+                    numericUpDown3.Value = 5;
+                    numericUpDown4.Value = 1;
+                    numericUpDown5.Value = decimal.Parse((0.22).ToString());
+                    numericUpDown6.Value = -4;
+                    numericUpDown7.Value = 8;
+                }
+                if (radioButton2.Checked)
+                {
+                    numericUpDown1.Value = 5;
+                    numericUpDown2.Value = 10;
+                    numericUpDown3.Value = 8;
+                    numericUpDown4.Value = 2;
+                    numericUpDown5.Value = decimal.Parse((0.3).ToString());
+                    numericUpDown6.Value = -10;
+                    numericUpDown7.Value = 20;
+                }
+                if (radioButton3.Checked)
+                {
+                    numericUpDown1.Value = 30;
+                    numericUpDown2.Value = 35;
+                    numericUpDown3.Value = decimal.Parse((0.5.ToString()));
+                    numericUpDown4.Value = decimal.Parse((0.5.ToString()));
+                    numericUpDown5.Value = decimal.Parse((0.03).ToString());
+                    numericUpDown6.Value = 10;
+                    numericUpDown7.Value = 1;
+                }
+                button1_Click(sender, e);
+                MessageBox.Show("Оптимизация успешно произведена!", "Оптимизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else return;
+
         }
     }
 }

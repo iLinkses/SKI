@@ -34,6 +34,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MathModel));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.numericUpDown14 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown13 = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown12 = new System.Windows.Forms.NumericUpDown();
@@ -48,14 +53,15 @@
             this.Value = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label47 = new System.Windows.Forms.Label();
+            this.cbControlES = new System.Windows.Forms.CheckBox();
+            this.label44 = new System.Windows.Forms.Label();
             this.numericUpDown16 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
+            this.label43 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.numericUpDown15 = new System.Windows.Forms.NumericUpDown();
-            this.cbControlES = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label33 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
@@ -131,7 +137,14 @@
             this.zedGraphControl6 = new ZedGraph.ZedGraphControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.zedGraphControl7 = new ZedGraph.ZedGraphControl();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
@@ -144,6 +157,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -164,7 +178,8 @@
             this.tabPage7.SuspendLayout();
             this.tabPage8.SuspendLayout();
             this.tabPage9.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.tabPage11.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -172,6 +187,7 @@
             this.tabControl1.Controls.Add(this.tabPage10);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage11);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -181,6 +197,11 @@
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.button2);
+            this.tabPage10.Controls.Add(this.textBox5);
+            this.tabPage10.Controls.Add(this.textBox4);
+            this.tabPage10.Controls.Add(this.textBox3);
+            this.tabPage10.Controls.Add(this.textBox2);
             this.tabPage10.Controls.Add(this.numericUpDown14);
             this.tabPage10.Controls.Add(this.numericUpDown13);
             this.tabPage10.Controls.Add(this.numericUpDown12);
@@ -197,6 +218,48 @@
             this.tabPage10.TabIndex = 2;
             this.tabPage10.Text = "Мнемосхема";
             this.tabPage10.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(657, 381);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(59, 27);
+            this.button2.TabIndex = 56;
+            this.button2.Text = "Пуск";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBox5
+            // 
+            this.textBox5.Location = new System.Drawing.Point(657, 498);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
+            this.textBox5.Size = new System.Drawing.Size(59, 22);
+            this.textBox5.TabIndex = 55;
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(657, 470);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(59, 22);
+            this.textBox4.TabIndex = 54;
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(657, 442);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(59, 22);
+            this.textBox3.TabIndex = 53;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(657, 414);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(59, 22);
+            this.textBox2.TabIndex = 52;
             // 
             // numericUpDown14
             // 
@@ -462,6 +525,23 @@
             this.tabPage1.Text = "Расчет";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label47);
+            this.groupBox3.Controls.Add(this.cbControlES);
+            this.groupBox3.Controls.Add(this.label44);
+            this.groupBox3.Controls.Add(this.numericUpDown16);
+            this.groupBox3.Controls.Add(this.numericUpDown15);
+            this.groupBox3.Controls.Add(this.label43);
+            this.groupBox3.Controls.Add(this.label46);
+            this.groupBox3.Controls.Add(this.label45);
+            this.groupBox3.Location = new System.Drawing.Point(443, 6);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(273, 103);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Дополнительные настройки";
+            // 
             // label47
             // 
             this.label47.AutoSize = true;
@@ -470,6 +550,25 @@
             this.label47.Size = new System.Drawing.Size(16, 17);
             this.label47.TabIndex = 39;
             this.label47.Text = "=";
+            // 
+            // cbControlES
+            // 
+            this.cbControlES.AutoSize = true;
+            this.cbControlES.Location = new System.Drawing.Point(10, 73);
+            this.cbControlES.Name = "cbControlES";
+            this.cbControlES.Size = new System.Drawing.Size(235, 21);
+            this.cbControlES.TabIndex = 4;
+            this.cbControlES.Text = "Контроль нештатных ситуаций";
+            this.cbControlES.UseVisualStyleBackColor = true;
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(7, 46);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(123, 17);
+            this.label44.TabIndex = 36;
+            this.label44.Text = "Расчетное время";
             // 
             // numericUpDown16
             // 
@@ -492,42 +591,6 @@
             0,
             0,
             0});
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(170, 46);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(16, 17);
-            this.label46.TabIndex = 37;
-            this.label46.Text = "=";
-            // 
-            // label45
-            // 
-            this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(136, 46);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(28, 17);
-            this.label45.TabIndex = 35;
-            this.label45.Text = "tau";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(7, 46);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(123, 17);
-            this.label44.TabIndex = 36;
-            this.label44.Text = "Расчетное время";
-            // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(7, 18);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(32, 17);
-            this.label43.TabIndex = 35;
-            this.label43.Text = "Шаг";
             // 
             // numericUpDown15
             // 
@@ -557,15 +620,32 @@
             0,
             65536});
             // 
-            // cbControlES
+            // label43
             // 
-            this.cbControlES.AutoSize = true;
-            this.cbControlES.Location = new System.Drawing.Point(10, 73);
-            this.cbControlES.Name = "cbControlES";
-            this.cbControlES.Size = new System.Drawing.Size(235, 21);
-            this.cbControlES.TabIndex = 4;
-            this.cbControlES.Text = "Контроль нештатных ситуаций";
-            this.cbControlES.UseVisualStyleBackColor = true;
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(7, 18);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(32, 17);
+            this.label43.TabIndex = 35;
+            this.label43.Text = "Шаг";
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(170, 46);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(16, 17);
+            this.label46.TabIndex = 37;
+            this.label46.Text = "=";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(136, 46);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(28, 17);
+            this.label45.TabIndex = 35;
+            this.label45.Text = "tau";
             // 
             // groupBox2
             // 
@@ -1466,22 +1546,96 @@
             this.zedGraphControl7.TabIndex = 0;
             this.zedGraphControl7.UseExtendedPrintDialog = true;
             // 
-            // groupBox3
+            // tabPage11
             // 
-            this.groupBox3.Controls.Add(this.label47);
-            this.groupBox3.Controls.Add(this.cbControlES);
-            this.groupBox3.Controls.Add(this.label44);
-            this.groupBox3.Controls.Add(this.numericUpDown16);
-            this.groupBox3.Controls.Add(this.numericUpDown15);
-            this.groupBox3.Controls.Add(this.label43);
-            this.groupBox3.Controls.Add(this.label46);
-            this.groupBox3.Controls.Add(this.label45);
-            this.groupBox3.Location = new System.Drawing.Point(443, 6);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(273, 259);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Дополнительные настройки";
+            this.tabPage11.Controls.Add(this.button3);
+            this.tabPage11.Controls.Add(this.textBox7);
+            this.tabPage11.Controls.Add(this.textBox6);
+            this.tabPage11.Controls.Add(this.groupBox4);
+            this.tabPage11.Location = new System.Drawing.Point(4, 25);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage11.Size = new System.Drawing.Size(724, 606);
+            this.tabPage11.TabIndex = 3;
+            this.tabPage11.Text = "Оптимизация";
+            this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(8, 116);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(214, 44);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Принять оптимальные управляющие параметры";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBox7
+            // 
+            this.textBox7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox7.Location = new System.Drawing.Point(3, 166);
+            this.textBox7.Multiline = true;
+            this.textBox7.Name = "textBox7";
+            this.textBox7.Size = new System.Drawing.Size(718, 437);
+            this.textBox7.TabIndex = 5;
+            // 
+            // textBox6
+            // 
+            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox6.Location = new System.Drawing.Point(228, 6);
+            this.textBox6.Multiline = true;
+            this.textBox6.Name = "textBox6";
+            this.textBox6.Size = new System.Drawing.Size(493, 154);
+            this.textBox6.TabIndex = 4;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.radioButton1);
+            this.groupBox4.Controls.Add(this.radioButton3);
+            this.groupBox4.Controls.Add(this.radioButton2);
+            this.groupBox4.Location = new System.Drawing.Point(8, 6);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(214, 103);
+            this.groupBox4.TabIndex = 3;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Показатели качества";
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(6, 21);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(147, 21);
+            this.radioButton1.TabIndex = 0;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Вязкость по Муни";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(6, 75);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(192, 21);
+            this.radioButton3.TabIndex = 2;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "Потери массы полимера";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(6, 48);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(202, 21);
+            this.radioButton2.TabIndex = 1;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Пластичность по Карреру";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // MathModel
             // 
@@ -1497,6 +1651,7 @@
             this.Load += new System.EventHandler(this.MathModel_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage10.ResumeLayout(false);
+            this.tabPage10.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown13)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown12)).EndInit();
@@ -1507,6 +1662,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown15)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -1529,16 +1686,15 @@
             this.tabPage7.ResumeLayout(false);
             this.tabPage8.ResumeLayout(false);
             this.tabPage9.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.tabPage11.ResumeLayout(false);
+            this.tabPage11.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label8;
@@ -1614,7 +1770,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown4;
         private System.Windows.Forms.NumericUpDown numericUpDown3;
         private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.TabPage tabPage10;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox cbControlES;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -1637,6 +1792,22 @@
         private System.Windows.Forms.GroupBox groupBox3;
         public System.Windows.Forms.NumericUpDown numericUpDown15;
         public System.Windows.Forms.NumericUpDown numericUpDown16;
+        private System.Windows.Forms.Button button2;
+        public System.Windows.Forms.TextBox textBox5;
+        public System.Windows.Forms.TextBox textBox4;
+        public System.Windows.Forms.TextBox textBox3;
+        public System.Windows.Forms.TextBox textBox2;
+        public System.Windows.Forms.TabControl tabControl1;
+        public System.Windows.Forms.TabPage tabPage1;
+        public System.Windows.Forms.TabPage tabPage10;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button button3;
+        public System.Windows.Forms.TabPage tabPage11;
     }
 }
 

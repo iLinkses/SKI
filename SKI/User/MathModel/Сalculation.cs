@@ -31,13 +31,13 @@ namespace SKI
         /// <summary>
         /// Расчет СКИ
         /// </summary>
-        /// <param name="mvx"></param>
-        /// <param name="Tvx"></param>
-        /// <param name="G"></param>
-        /// <param name="Gk"></param>
-        /// <param name="Ghl"></param>
-        /// <param name="Thl"></param>
-        /// <param name="ch2vx"></param>
+        /// <param name="mvx">Концентрация изопрена в шихте</param>
+        /// <param name="Tvx">Температура шихты</param>
+        /// <param name="G">Расход шихты</param>
+        /// <param name="Gk">Расход каталитического комплекса</param>
+        /// <param name="Ghl">Расход хладагента</param>
+        /// <param name="Thl">Температура ладагента</param>
+        /// <param name="ch2vx">Концентрация водорода в шихте</param>
         public void Calculation(double mvx, double Tvx, double G, double Gk, double Ghl, double Thl, double ch2vx)
         {
             MathModel main = Owner as MathModel;
@@ -46,26 +46,26 @@ namespace SKI
             n = Convert.ToInt32(tau / h);
 
             //---Вектор входных переменных---
-            double V = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 14).Select(p => p.Field<double>("Value")).Single();//4.1; //Объем реактора
-            double alfa = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 15).Select(p => p.Field<double>("Value")).Single();//1.22; //Активность катализатора
-            double beta = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 16).Select(p => p.Field<double>("Value")).Single();//0.3;  //Коэффициент, учитывающий примеси в шихте
-            double cp = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 17).Select(p => p.Field<double>("Value")).Single();//0.55; //Теплоемкость реакционной смеси
-            double A = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 18).Select(p => p.Field<double>("Value")).Single();//0.5; //Коэффициент, учитывающий гидродинамические характеристики реактора
-            double s = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 19).Select(p => p.Field<double>("Value")).Single();//12; //Поверхность теплосъема
-            double chl = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 20).Select(p => p.Field<double>("Value")).Single();//0.6; //теплоемкость хладагента
-            double ro = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 21).Select(p => p.Field<double>("Value")).Single();//630; //Плотность реакционной смеси
-            double q = GetParameters("Входной").AsEnumerable().Where(p => p.Field<long>("ID") == 22).Select(p => p.Field<double>("Value")).Single();//263; //Тепловой эффект реакции
+            double V = GetParameters("Входной", 14);//.AsEnumerable().Where(p => p.Field<long>("ID") == 14).Select(p => p.Field<double>("Value")).Single();//4.1; //Объем реактора
+            double alfa = GetParameters("Входной", 15);//.AsEnumerable().Where(p => p.Field<long>("ID") == 15).Select(p => p.Field<double>("Value")).Single();//1.22; //Активность катализатора
+            double beta = GetParameters("Входной", 16);//.AsEnumerable().Where(p => p.Field<long>("ID") == 16).Select(p => p.Field<double>("Value")).Single();//0.3;  //Коэффициент, учитывающий примеси в шихте
+            double cp = GetParameters("Входной", 17);//.AsEnumerable().Where(p => p.Field<long>("ID") == 17).Select(p => p.Field<double>("Value")).Single();//0.55; //Теплоемкость реакционной смеси
+            double A = GetParameters("Входной", 18);//.AsEnumerable().Where(p => p.Field<long>("ID") == 18).Select(p => p.Field<double>("Value")).Single();//0.5; //Коэффициент, учитывающий гидродинамические характеристики реактора
+            double s = GetParameters("Входной", 19);//.AsEnumerable().Where(p => p.Field<long>("ID") == 19).Select(p => p.Field<double>("Value")).Single();//12; //Поверхность теплосъема
+            double chl = GetParameters("Входной", 20);//.AsEnumerable().Where(p => p.Field<long>("ID") == 20).Select(p => p.Field<double>("Value")).Single();//0.6; //теплоемкость хладагента
+            double ro = GetParameters("Входной", 21);//.AsEnumerable().Where(p => p.Field<long>("ID") == 21).Select(p => p.Field<double>("Value")).Single();//630; //Плотность реакционной смеси
+            double q = GetParameters("Входной", 22);//.AsEnumerable().Where(p => p.Field<long>("ID") == 22).Select(p => p.Field<double>("Value")).Single();//263; //Тепловой эффект реакции
 
-            Console.WriteLine($"{V} {alfa} {beta} {cp} {A} {s} {chl} {ro} {q}") ;
+            //Console.WriteLine($"{V} {alfa} {beta} {cp} {A} {s} {chl} {ro} {q}") ;
 
             //---Вектор параметров модели---
             //double E = 10000;
-            double R = 8.314; //Универсальная газовая постоянная
-            double k0 = 500000000; //Константа для расчета скорости реакции полимеризаии
-            double k1 = 10.0; //Константа для расчета скорости реакции полимеризаии
-            double k2 = 1.3; //Константа для расчета скорости реакции полимеризаии
-            double u = 40; //Коэффициент теплопередачи
-            double kh = 1.56; //Коэффициент для расчета реакции переноса цепи по водороду
+            double R = GetParameters("Константа", 8);//8.314; //Универсальная газовая постоянная
+            double k0 = GetParameters("Константа", 9);//500000000; //Константа для расчета скорости реакции полимеризаии
+            double k1 = GetParameters("Константа", 10);//10.0; //Константа для расчета скорости реакции полимеризаии
+            double k2 = GetParameters("Константа", 11);//1.3; //Константа для расчета скорости реакции полимеризаии
+            double u = GetParameters("Константа", 12);//40; //Коэффициент теплопередачи
+            double kh = GetParameters("Константа", 13);//1.56; //Коэффициент для расчета реакции переноса цепи по водороду
 
             double[] tp = new double[n + 1];
             double[] micp0 = new double[n + 1]; //Среднеинтегральные значения мономера
@@ -131,14 +131,24 @@ namespace SKI
                 //if (m[j] < 0) m[j] = 0;
                 //if (pm[j] < 0) pm[j] = 0;
             }
-            
-            main.textBox1.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
-            main.textBox9.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
-            main.textBox10.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
-            main.textBox11.Text = Convert.ToString(string.Format("{0:N1}", m[n]));
-            main.textBox12.Text = Convert.ToString(string.Format("{0:N1}", T[n] - 200));
-            main.textBox13.Text = Convert.ToString(string.Format("{0:N3}", ch2[n]));
-            main.textBox14.Text = Convert.ToString(string.Format("{0:N2}", d[n]));
+
+            if (main.tabControl1.SelectedTab == main.tabPage10)
+            {
+                main.textBox2.Text = Convert.ToString(string.Format("{0:N1}", T[n] - 200));
+                main.textBox3.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
+                main.textBox4.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
+                main.textBox5.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
+            }
+            if (main.tabControl1.SelectedTab == main.tabPage1 || main.tabControl1.SelectedTab == main.tabPage11)
+            {
+                main.textBox1.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
+                main.textBox9.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
+                main.textBox10.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
+                main.textBox11.Text = Convert.ToString(string.Format("{0:N1}", m[n]));
+                main.textBox12.Text = Convert.ToString(string.Format("{0:N1}", T[n] - 200));
+                main.textBox13.Text = Convert.ToString(string.Format("{0:N3}", ch2[n]));
+                main.textBox14.Text = Convert.ToString(string.Format("{0:N2}", d[n]));
+            }
 
             //Уменьшение выходной температура на 200 для графика
             double[] TClone = new double[n + 1];
@@ -152,8 +162,16 @@ namespace SKI
         }
         #endregion
 
-        private DataTable GetParameters(string type)
+        #region Получения значения параметра
+        /// <summary>
+        /// Получает значение параметра по ID
+        /// </summary>
+        /// <param name="type">Тип параметра (Управляющий/Входной/Константа)</param>
+        /// <param name="ID"></param>
+        /// <returns></returns>
+        private double GetParameters(string type, int ID)
         {
+            double parameter=0;
             DataTable dTable = new DataTable();
             String dbFileName = "SKI.db";
             SQLiteConnection m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;");
@@ -167,12 +185,14 @@ namespace SKI
                 }
                 string Command = "select TP.ID, TP. Value " +
                                  "from Technological_Parameters TP " +
-                                 "where TP.Type = '" + type + "'";
+                                 "where TP.Type = '" + type + "' " +
+                                 "and TP.ID = " + ID;
                 SQLiteDataAdapter sqlAdapter = new SQLiteDataAdapter(Command, m_dbConn);
                 SQLiteCommandBuilder sqlCommandBuilder = new SQLiteCommandBuilder(sqlAdapter);
 
                 
                 sqlAdapter.Fill(dTable);
+                parameter = double.Parse(dTable.Rows[0]["Value"].ToString());
             }
             catch (SQLiteException ex)
             {
@@ -180,9 +200,9 @@ namespace SKI
             }
 
             m_dbConn.Close();
-            return dTable;
+            return parameter;
         }
-
+        #endregion
         #region Добавление графиков
         /// <summary>
         /// Добавление графиков
@@ -280,6 +300,7 @@ namespace SKI
         #endregion
 
         //Сделать отрисовку главного графика во весь экран (скрыть масштабирование пороговых диапазонов)
+        //Пробовал отрисовывать главный график, не понравилось :)
         #region Отрисовка графика
         /// <summary>
         /// Отрисовка графика

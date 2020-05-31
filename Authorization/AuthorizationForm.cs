@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -104,20 +105,22 @@ namespace Authorization
 
                 else
                 {
-                    string login = loginBox.SelectedItem.ToString(); ;
+                    string login = loginBox.SelectedItem.ToString();
                     string password = passBox.Text.ToString();
+                    MD5 md5Hash = MD5.Create();
+                    var HashPass = Convert.ToBase64String(md5Hash.ComputeHash(Encoding.UTF8.GetBytes(password)));
                     var Pass = db.GetAuthorization().SingleOrDefault(p => p.Login == login);
                     if (Pass == null) 
                     {
                         this.DialogResult = DialogResult.None;
                         return;
                     }
-                    if (password != Pass.Password)
+                    if (HashPass != Pass.Password)
                     {
                         MessageBox.Show("Вы ввели не правильный пароль...", "Ошибка");
                         this.DialogResult = DialogResult.None;
                     }
-                    if (password == Pass.Password)
+                    if (HashPass == Pass.Password)
                     {
                         PasswordVerification = true;
                         this.DialogResult = DialogResult.OK;

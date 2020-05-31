@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,18 +22,6 @@ namespace SKI
             //---
             InitializeComponent();
             //---
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.DrawMode = DrawMode.OwnerDrawFixed;
-            this.comboBox1.DrawItem += new DrawItemEventHandler(comboBox1_DrawItem);
-            this.comboBox1.DropDownClosed += new EventHandler(comboBox1_DropDownClosed);
-            this.comboBox1.MouseLeave += new EventHandler(comboBox1_Leave);
-
-            //Заполнение comboBox1 (Нештатные ситуации)
-            var ES = db.GetES();
-            foreach (var EmergencySituation in ES)
-            {
-                comboBox1.Items.Add(EmergencySituation.EmergencySituation.ToString());
-            }
         }
 
         //Заполнение treeView из базы
@@ -96,54 +85,43 @@ namespace SKI
             }
         }
 
-        private void comboBox1_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if (e.Index < 0) { return; }
-            string text = comboBox1.GetItemText(comboBox1.Items[e.Index]);
-            e.DrawBackground();
-            using (SolidBrush br = new SolidBrush(e.ForeColor))
-            {
-                e.Graphics.DrawString(text, e.Font, br, e.Bounds);
-            }
-
-            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected && comboBox1.DroppedDown)
-            {
-                if (TextRenderer.MeasureText(text, comboBox1.Font).Width > comboBox1.Width)
-                {
-                    toolTip1.Show(text, comboBox1, e.Bounds.Right, e.Bounds.Bottom);
-                }
-                else
-                {
-                    toolTip1.Hide(comboBox1);
-                }
-            }
-            e.DrawFocusRectangle();
-        }
-
-        private void comboBox1_MouseHover(object sender, EventArgs e)
-        {
-            if (comboBox1.SelectedItem != null)
-            {
-                if (!comboBox1.DroppedDown && TextRenderer.MeasureText(comboBox1.SelectedItem.ToString(), comboBox1.Font).Width > comboBox1.Width)
-                {
-                    toolTip1.Show(comboBox1.SelectedItem.ToString(), comboBox1, comboBox1.Location.X, comboBox1.Location.Y);
-                }
-            }
-        }
-
-        private void comboBox1_DropDownClosed(object sender, EventArgs e)
-        {
-            toolTip1.Hide(comboBox1);
-        }
-
-        private void comboBox1_Leave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(comboBox1);
-        }
 
         private void Main_Load(object sender, EventArgs e)
         {
             FillTree();
+            GetInfluenceOfImpurities();
+        }
+
+        private void GetInfluenceOfImpurities()
+        {
+            DataTable dTable = new DataTable();
+            String dbFileName = "SKI.db";
+            SQLiteConnection m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;");
+            m_dbConn.Open();
+
+            try
+            {
+                if (m_dbConn.State != ConnectionState.Open)
+                {
+                    MessageBox.Show("Open connection with database");
+                }
+                string Command = "select IOI.Impurity, IOI.DecreaseOfReactionRate, IOI.ReducingTheMolecularWeight " +
+                                 "from Influence_Of_Impurities IOI";
+                SQLiteDataAdapter sqlAdapter = new SQLiteDataAdapter(Command, m_dbConn);
+                SQLiteCommandBuilder sqlCommandBuilder = new SQLiteCommandBuilder(sqlAdapter);
+
+
+                sqlAdapter.Fill(dTable);
+                BindingSource bindingSource = new BindingSource();
+                bindingSource.DataSource = dTable;
+                dataGridView1.DataSource = bindingSource;
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+
+            m_dbConn.Close();
         }
 
         private void treeView_AfterSelect(object sender, TreeViewEventArgs e)
@@ -187,22 +165,6 @@ namespace SKI
             if (SES == null) return;
             //не переносит текст на другую строку
             textBox1.Text = TCES + Environment.NewLine + Environment.NewLine + SES.SolutionOfES;
-        }
-        
-        private void button1_Click(object sender, EventArgs e)
-        {
-            textBox9.Clear();
-            double M, Pm, t1, t2, fi, Ge, Pl, W;
-            M = Convert.ToDouble( textBoxM.Text);
-            Pm = Convert.ToDouble(textBoxPm.Text);//Что то не то при измении
-            t1 = Convert.ToDouble(textBoxt1.Text);
-            t2 = Convert.ToDouble(textBoxt2.Text);
-            fi = Convert.ToDouble(textBoxfi.Text);
-            Ge = Convert.ToDouble(textBoxGe.Text);
-            Pl = Convert.ToDouble(textBoxPl.Text);
-            W = Convert.ToDouble(textBoxW.Text);
-            AnalysisByParameters ABP = new AnalysisByParameters();
-           textBox9.Text = ABP.Analysis(M, Pm, t1, t2, fi, Ge, Pl, W); 
         }
     }
 }

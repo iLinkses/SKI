@@ -77,7 +77,6 @@
     <Compile Include="Admin\AdmnForm.designer.cs">
       <DependentUpon>AdmnForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="User\EmergencySituation\AnalysisByParameters.cs" />
     <Compile Include="User\EmergencySituation\ESForm.cs">
       <SubType>Form</SubType>
     </Compile>

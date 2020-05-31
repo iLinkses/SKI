@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using SQLiteDBConnection;
 using System.Data.SQLite;
 using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SKI
 {
@@ -67,7 +69,9 @@ namespace SKI
             if (toolStripTextBox1.Text != string.Empty)
             {
                 string login = "Admn";
-                string ReSavePass = "UPDATE Authorization SET Password='" + toolStripTextBox1.Text.ToString() + "' WHERE Login ='" + login + "'";
+                MD5 md5Hash = MD5.Create();
+                var HashPass = Convert.ToBase64String(md5Hash.ComputeHash(Encoding.UTF8.GetBytes(toolStripTextBox1.Text.ToString())));
+                string ReSavePass = "UPDATE Authorization SET Password='" + HashPass + "' WHERE Login ='" + login + "'";
                 try
                 {
                     SQLiteCommand cmd = m_dbConn.CreateCommand();
