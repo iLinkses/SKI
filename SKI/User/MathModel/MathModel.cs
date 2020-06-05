@@ -12,8 +12,6 @@ using System.Data.SQLite;
 
 namespace SKI
 {
-
-
     public partial class MathModel : Form
     {
         readonly String dbFileName = "SKI.db";
@@ -75,25 +73,16 @@ namespace SKI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (tabControl1.SelectedTab == tabPage10)
-            {
-                Input input = new Input();
-                input.mvx = Convert.ToDouble(numericUpDown8.Value);
-                input.Tvx = Convert.ToDouble(numericUpDown9.Value) + 273;
-                input.G = Convert.ToDouble(numericUpDown10.Value);
-                input.Gk = Convert.ToDouble(numericUpDown11.Value);
-                input.Ghl = Convert.ToDouble(numericUpDown12.Value);
-                input.Thl = Convert.ToDouble(numericUpDown13.Value) + 273;
-                input.ch2vx = Convert.ToDouble(numericUpDown14.Value) / 100;
+            Input input = new Input();
+            input.mvx = Convert.ToDouble(numericUpDown1.Value);
+            input.Tvx = Convert.ToDouble(numericUpDown2.Value) + 273;
+            input.G = Convert.ToDouble(numericUpDown3.Value);
+            input.Gk = Convert.ToDouble(numericUpDown4.Value);
+            input.Ghl = Convert.ToDouble(numericUpDown5.Value);
+            input.Thl = Convert.ToDouble(numericUpDown6.Value) + 273;
+            input.ch2vx = Convert.ToDouble(numericUpDown7.Value) / 100;
 
-                //Расчеты
-                Сalculation calculation = new Сalculation
-                {
-                    Owner = this
-                };
-                calculation.Calculation(input.mvx, input.Tvx, input.G, input.Gk, input.Ghl, input.Thl, input.ch2vx);
-            }
-            if (tabControl1.SelectedTab == tabPage1 || tabControl1.SelectedTab == tabPage11)
+            if (tabControl1.SelectedTab == tabPage1)
             {
                 //Перекраска текстбоксов
                 textBox1.BackColor = Color.FromArgb(-1);
@@ -103,32 +92,19 @@ namespace SKI
                 textBox12.BackColor = Color.FromArgb(-1);
                 textBox13.BackColor = Color.FromArgb(-1);
                 textBox14.BackColor = Color.FromArgb(-1);
+            }
 
-                Input input = new Input();
-                input.mvx = Convert.ToDouble(numericUpDown1.Value);
-                input.Tvx = Convert.ToDouble(numericUpDown2.Value) + 273;
-                input.G = Convert.ToDouble(numericUpDown3.Value);
-                input.Gk = Convert.ToDouble(numericUpDown4.Value);
-                input.Ghl = Convert.ToDouble(numericUpDown5.Value);
-                input.Thl = Convert.ToDouble(numericUpDown6.Value) + 273;
-                input.ch2vx = Convert.ToDouble(numericUpDown7.Value) / 100;
+            //Расчеты
+            Сalculation calculation = new Сalculation
+            {
+                Owner = this
+            };
+            calculation.Calculation(input.mvx, input.Tvx, input.G, input.Gk, input.Ghl, input.Thl, input.ch2vx);
 
-                //Очистка боксов для выходных параметров
-                textBox1.Clear();
-                textBox9.Clear();
-                textBox10.Clear();
-                textBox11.Clear();
-                textBox12.Clear();
-                textBox13.Clear();
-                textBox14.Clear();
+            SetRowColor();
 
-                //Расчеты
-                Сalculation calculation = new Сalculation
-                {
-                    Owner = this
-                };
-                calculation.Calculation(input.mvx, input.Tvx, input.G, input.Gk, input.Ghl, input.Thl, input.ch2vx);
-
+            if (tabControl1.SelectedTab == tabPage1)
+            {
                 //Контроль нештатных ситуаций
                 if (cbControlES.Checked)
                 {
@@ -137,6 +113,9 @@ namespace SKI
             }
         }
 
+        /// <summary>
+        /// Проверка на нештатные ситуации
+        /// </summary>
         private void ControlES()
         {
             Dictionary<int, double> Output = new Dictionary<int, double>(7);
@@ -259,6 +238,10 @@ namespace SKI
             return ES;
         }
 
+        /// <summary>
+        /// Устанавливает цвета для текстбоксов на вкладке "Расчеты"
+        /// </summary>
+        /// <param name="ID"></param>
         private void SetColor(int ID)
         {
             if (ID == 1)
@@ -279,21 +262,28 @@ namespace SKI
 
         private void MathModel_Load(object sender, EventArgs e)
         {
+            dataGridView1.AutoGenerateColumns = false;
             m_dbConn = new SQLiteConnection("Data Source=" + dbFileName + ";Version=3;");
             m_dbConn.Open();
 
+            ///Заполняем таблицу на вкладке "Мнемосхема"
             try
             {
                 if (m_dbConn.State != ConnectionState.Open)
                 {
                     MessageBox.Show("Open connection with database");
                 }
-                string Command = "select TP.Parameter, " +
+                string Command = "select TP.ID, " +
+                                        "TP.Parameter, " +
+                                        "TP.Type, " +
                                         "TP.MinVal, " +
                                         "TP.MaxVal, " +
                                         "TP.Value " +
                                  "from Technological_Parameters TP " +
-                                 "where TP.Type = 'Входной'";
+                                 "where(TP.Type = 'Входной' and TP.ID in (14, 15, 16, 19)) " +
+                                 "or TP.Type = 'Выходной' " +
+                                 "or TP.Type = 'Управляющий' " +
+                                 "order by TP.Type = 'Выходной'";
                 SQLiteDataAdapter sqlAdapter = new SQLiteDataAdapter(Command, m_dbConn);
                 sqlCommandBuilder = new SQLiteCommandBuilder(sqlAdapter);
 
@@ -309,107 +299,113 @@ namespace SKI
             }
 
             m_dbConn.Close();
+
+            dataGridView1.Rows[4].Cells["Value"].Value = numericUpDown8.Value;
+            dataGridView1.Rows[5].Cells["Value"].Value = numericUpDown9.Value;
+            dataGridView1.Rows[6].Cells["Value"].Value = numericUpDown10.Value;
+            dataGridView1.Rows[7].Cells["Value"].Value = numericUpDown11.Value;
+            dataGridView1.Rows[8].Cells["Value"].Value = numericUpDown12.Value;
+            dataGridView1.Rows[9].Cells["Value"].Value = numericUpDown13.Value;
+            dataGridView1.Rows[10].Cells["Value"].Value = numericUpDown14.Value;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             button1_Click(sender, e);
+            SetRowColor();
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Подкрашивает строки таблицы
+        /// </summary>
+        private void SetRowColor()
         {
-            if (radioButton1.Checked)
+            foreach (DataGridViewRow dgvr in dataGridView1.Rows)
             {
-                textBox6.Text = "Вязкость по Муни > min" + Environment.NewLine +
-                                "0.3 < Пластичность по Карреру < 2" + Environment.NewLine +
-                                "0 < Потери массы < 0.5";
-                textBox7.Text = "Оптимальные управляющие параметры:" + Environment.NewLine +
-                                label2.Text + "\t\t" + label11.Text + " " + label34.Text + " 5" + Environment.NewLine +
-                                label3.Text + "\t\t\t" + label12.Text + " " + label35.Text + " 100" + Environment.NewLine +
-                                label4.Text + "\t\t\t\t" + label13.Text + " " + label36.Text + " 5" + Environment.NewLine +
-                                label5.Text + "\t" + label14.Text + " " + label37.Text + " 1" + Environment.NewLine +
-                                label6.Text + "\t\t\t" + label15.Text + " " + label38.Text + " 0,22" + Environment.NewLine +
-                                label7.Text + "\t\t" + label16.Text + " " + label39.Text + " -4" + Environment.NewLine +
-                                label8.Text + "\t\t" + label17.Text + " " + label40.Text + " 8";
-            }
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton2.Checked)
-            {
-                textBox6.Text = "Пластичность по Карреру > min" + Environment.NewLine +
-                                "20 < Вязкость по Муни < 60" + Environment.NewLine +
-                                "0 < Потери массы < 0.5";
-                textBox7.Text = "Оптимальные управляющие параметры:" + Environment.NewLine +
-                                label2.Text + "\t\t" + label11.Text + " " + label34.Text + " 5" + Environment.NewLine +
-                                label3.Text + "\t\t\t" + label12.Text + " " + label35.Text + " 10" + Environment.NewLine +
-                                label4.Text + "\t\t\t\t" + label13.Text + " " + label36.Text + " 8" + Environment.NewLine +
-                                label5.Text + "\t" + label14.Text + " " + label37.Text + " 2" + Environment.NewLine +
-                                label6.Text + "\t\t\t" + label15.Text + " " + label38.Text + " 0,3" + Environment.NewLine +
-                                label7.Text + "\t\t" + label16.Text + " " + label39.Text + " -10" + Environment.NewLine +
-                                label8.Text + "\t\t" + label17.Text + " " + label40.Text + " 20";
-            }
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton3.Checked)
-            {
-                textBox6.Text = "Потери массы > min" + Environment.NewLine +
-                                "20 < Вязкость по Муни < 60" + Environment.NewLine +
-                                "0.3 < Пластичность по Карреру < 2";
-                textBox7.Text = "Оптимальные управляющие параметры:" + Environment.NewLine +
-                                label2.Text + "\t\t" + label11.Text + " " + label34.Text + " 30" + Environment.NewLine +
-                                label3.Text + "\t\t\t" + label12.Text + " " + label35.Text + " 35" + Environment.NewLine +
-                                label4.Text + "\t\t\t\t" + label13.Text + " " + label36.Text + " 0,5" + Environment.NewLine +
-                                label5.Text + "\t" + label14.Text + " " + label37.Text + " 0,5" + Environment.NewLine +
-                                label6.Text + "\t\t\t" + label15.Text + " " + label38.Text + " 0,03" + Environment.NewLine +
-                                label7.Text + "\t\t" + label16.Text + " " + label39.Text + " 10" + Environment.NewLine +
-                                label8.Text + "\t\t" + label17.Text + " " + label40.Text + " 1";
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            var messageBox = MessageBox.Show("Вы уверены что хотите принять оптимальные управляющие воздействия?", "Оптимизация", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (messageBox == DialogResult.Yes)
-            {
-                if (radioButton1.Checked)
+                Color RowColor = Color.White;
+                if (dataGridView1.Rows[dgvr.Index].Cells["Value"].Value.ToString() != "")
                 {
-                    numericUpDown1.Value = 5;
-                    numericUpDown2.Value = 100;
-                    numericUpDown3.Value = 5;
-                    numericUpDown4.Value = 1;
-                    numericUpDown5.Value = decimal.Parse((0.22).ToString());
-                    numericUpDown6.Value = -4;
-                    numericUpDown7.Value = 8;
+                    if (double.Parse(dataGridView1.Rows[dgvr.Index].Cells["Value"].Value.ToString()) < double.Parse(dataGridView1.Rows[dgvr.Index].Cells["MinVal"].Value.ToString()) || double.Parse(dataGridView1.Rows[dgvr.Index].Cells["Value"].Value.ToString()) > double.Parse(dataGridView1.Rows[dgvr.Index].Cells["MaxVal"].Value.ToString()))
+                    {
+                        RowColor = Color.Red;
+                    }
                 }
-                if (radioButton2.Checked)
-                {
-                    numericUpDown1.Value = 5;
-                    numericUpDown2.Value = 10;
-                    numericUpDown3.Value = 8;
-                    numericUpDown4.Value = 2;
-                    numericUpDown5.Value = decimal.Parse((0.3).ToString());
-                    numericUpDown6.Value = -10;
-                    numericUpDown7.Value = 20;
-                }
-                if (radioButton3.Checked)
-                {
-                    numericUpDown1.Value = 30;
-                    numericUpDown2.Value = 35;
-                    numericUpDown3.Value = decimal.Parse((0.5.ToString()));
-                    numericUpDown4.Value = decimal.Parse((0.5.ToString()));
-                    numericUpDown5.Value = decimal.Parse((0.03).ToString());
-                    numericUpDown6.Value = 10;
-                    numericUpDown7.Value = 1;
-                }
-                button1_Click(sender, e);
-                MessageBox.Show("Оптимизация успешно произведена!", "Оптимизация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dataGridView1.Rows[dgvr.Index].DefaultCellStyle.BackColor = dataGridView1.Rows[dgvr.Index].DefaultCellStyle.SelectionBackColor = RowColor;
+                dataGridView1.Rows[dgvr.Index].DefaultCellStyle.SelectionForeColor = Color.Black;
             }
-            else return;
 
         }
+
+        #region Связь при изменении значений на вкладках
+        private void numericUpDown8_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[4].Cells["Value"].Value = numericUpDown1.Value = numericUpDown8.Value;
+        }
+
+        private void numericUpDown9_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[5].Cells["Value"].Value = numericUpDown2.Value = numericUpDown9.Value;
+        }
+
+        private void numericUpDown10_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[6].Cells["Value"].Value = numericUpDown3.Value = numericUpDown10.Value;
+        }
+
+        private void numericUpDown11_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[7].Cells["Value"].Value = numericUpDown4.Value = numericUpDown11.Value;
+        }
+
+        private void numericUpDown12_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[8].Cells["Value"].Value = numericUpDown5.Value = numericUpDown12.Value;
+        }
+
+        private void numericUpDown13_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[9].Cells["Value"].Value = numericUpDown6.Value = numericUpDown13.Value;
+        }
+
+        private void numericUpDown14_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[10].Cells["Value"].Value = numericUpDown7.Value = numericUpDown14.Value;
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[4].Cells["Value"].Value = numericUpDown8.Value = numericUpDown1.Value;
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[5].Cells["Value"].Value = numericUpDown9.Value = numericUpDown2.Value;
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[6].Cells["Value"].Value = numericUpDown10.Value = numericUpDown3.Value;
+        }
+
+        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[7].Cells["Value"].Value = numericUpDown11.Value = numericUpDown4.Value;
+        }
+
+        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[8].Cells["Value"].Value = numericUpDown12.Value = numericUpDown5.Value;
+        }
+
+        private void numericUpDown6_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[9].Cells["Value"].Value = numericUpDown13.Value = numericUpDown6.Value;
+        }
+
+        private void numericUpDown7_ValueChanged(object sender, EventArgs e)
+        {
+            dataGridView1.Rows[10].Cells["Value"].Value = numericUpDown14.Value = numericUpDown7.Value;
+        }
+        #endregion
     }
 }

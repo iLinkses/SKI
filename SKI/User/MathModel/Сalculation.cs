@@ -126,29 +126,40 @@ namespace SKI
                 pl[j] = 20 * Math.Exp(50 / Tcp0[j]) / muni[j];
                 pm[j] = Gk * d[j - 1] / m[j];
 
-                //if (ch2[j] < 0) ch2[j] = 0;
-                //if (d[j] < 0) d[j] = 0;
-                //if (m[j] < 0) m[j] = 0;
-                //if (pm[j] < 0) pm[j] = 0;
+                if (ch2[j] < 0) ch2[j] = 0;
+                if (d[j] < 0) d[j] = 0;
+                if (m[j] < 0) m[j] = 0;
+                if (pm[j] < 0) pm[j] = 0;
             }
 
-            if (main.tabControl1.SelectedTab == main.tabPage10)
-            {
-                main.textBox2.Text = Convert.ToString(string.Format("{0:N1}", T[n] - 200));
-                main.textBox3.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
-                main.textBox4.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
-                main.textBox5.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
-            }
-            if (main.tabControl1.SelectedTab == main.tabPage1 || main.tabControl1.SelectedTab == main.tabPage11)
-            {
-                main.textBox1.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
-                main.textBox9.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
-                main.textBox10.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
-                main.textBox11.Text = Convert.ToString(string.Format("{0:N1}", m[n]));
-                main.textBox12.Text = Convert.ToString(string.Format("{0:N1}", T[n] - 200));
-                main.textBox13.Text = Convert.ToString(string.Format("{0:N3}", ch2[n]));
-                main.textBox14.Text = Convert.ToString(string.Format("{0:N2}", d[n]));
-            }
+            //if (main.tabControl1.SelectedTab == main.tabPage10)
+            //{
+            //    main.dataGridView1.Rows[15].Cells["Value"].Value = main.textBox2.Text = Convert.ToString(string.Format("{0:N1}", T[n] - 200));
+            //    main.dataGridView1.Rows[11].Cells["Value"].Value = main.textBox3.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
+            //    main.dataGridView1.Rows[12].Cells["Value"].Value = main.textBox4.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
+            //    main.dataGridView1.Rows[13].Cells["Value"].Value = main.textBox5.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
+            //    main.dataGridView1.Rows[14].Cells["Value"].Value = Convert.ToString(string.Format("{0:N1}", m[n]));
+            //    main.dataGridView1.Rows[16].Cells["Value"].Value = Convert.ToString(string.Format("{0:N3}", ch2[n]));
+            //    main.dataGridView1.Rows[17].Cells["Value"].Value = Convert.ToString(string.Format("{0:N2}", d[n]));
+            //}
+            //if (main.tabControl1.SelectedTab == main.tabPage1)
+            //{
+            //    main.textBox1.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
+            //    main.textBox9.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
+            //    main.textBox10.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
+            //    main.textBox11.Text = Convert.ToString(string.Format("{0:N1}", m[n]));
+            //    main.textBox12.Text = Convert.ToString(string.Format("{0:N1}", T[n] - 200));
+            //    main.textBox13.Text = Convert.ToString(string.Format("{0:N3}", ch2[n]));
+            //    main.textBox14.Text = Convert.ToString(string.Format("{0:N2}", d[n]));
+            //}
+
+            main.dataGridView1.Rows[11].Cells["Value"].Value = main.textBox3.Text = main.textBox1.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
+            main.dataGridView1.Rows[12].Cells["Value"].Value = main.textBox4.Text = main.textBox9.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
+            main.dataGridView1.Rows[13].Cells["Value"].Value = main.textBox5.Text = main.textBox10.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
+            main.dataGridView1.Rows[14].Cells["Value"].Value = main.textBox11.Text = Convert.ToString(string.Format("{0:N1}", m[n]));
+            main.dataGridView1.Rows[15].Cells["Value"].Value = main.textBox2.Text = main.textBox12.Text = Convert.ToString(string.Format("{0:N1}", T[n] - 200));
+            main.dataGridView1.Rows[16].Cells["Value"].Value = main.textBox13.Text = Convert.ToString(string.Format("{0:N3}", ch2[n]));
+            main.dataGridView1.Rows[17].Cells["Value"].Value = main.textBox14.Text = Convert.ToString(string.Format("{0:N2}", d[n]));
 
             //Уменьшение выходной температура на 200 для графика
             double[] TClone = new double[n + 1];

@@ -118,7 +118,7 @@ namespace SKI
                 bindingSource = new BindingSource();
                 bindingSource.DataSource = dTable;
                 dataGridView1.DataSource = bindingSource;
-                dataGridView1.Columns[0].Visible = false;
+                dataGridView1.Columns[0].ReadOnly = true;
             }
             catch (SQLiteException ex)
             {
