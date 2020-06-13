@@ -4,14 +4,13 @@ using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
 using System.Windows.Forms;
 using ZedGraph;
 
 /*********************************************************************
 **                                                                  **
 **                   Расчет реактора полимеризации.                 **
-**                                                                  **
+**                           by @iLinks                             **
 **                           Версия 1.0                             **
 **                            2020 год                              **
 **                                                                  **
@@ -132,27 +131,6 @@ namespace SKI
                 if (pm[j] < 0) pm[j] = 0;
             }
 
-            //if (main.tabControl1.SelectedTab == main.tabPage10)
-            //{
-            //    main.dataGridView1.Rows[15].Cells["Value"].Value = main.textBox2.Text = Convert.ToString(string.Format("{0:N1}", T[n] - 200));
-            //    main.dataGridView1.Rows[11].Cells["Value"].Value = main.textBox3.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
-            //    main.dataGridView1.Rows[12].Cells["Value"].Value = main.textBox4.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
-            //    main.dataGridView1.Rows[13].Cells["Value"].Value = main.textBox5.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
-            //    main.dataGridView1.Rows[14].Cells["Value"].Value = Convert.ToString(string.Format("{0:N1}", m[n]));
-            //    main.dataGridView1.Rows[16].Cells["Value"].Value = Convert.ToString(string.Format("{0:N3}", ch2[n]));
-            //    main.dataGridView1.Rows[17].Cells["Value"].Value = Convert.ToString(string.Format("{0:N2}", d[n]));
-            //}
-            //if (main.tabControl1.SelectedTab == main.tabPage1)
-            //{
-            //    main.textBox1.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
-            //    main.textBox9.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
-            //    main.textBox10.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
-            //    main.textBox11.Text = Convert.ToString(string.Format("{0:N1}", m[n]));
-            //    main.textBox12.Text = Convert.ToString(string.Format("{0:N1}", T[n] - 200));
-            //    main.textBox13.Text = Convert.ToString(string.Format("{0:N3}", ch2[n]));
-            //    main.textBox14.Text = Convert.ToString(string.Format("{0:N2}", d[n]));
-            //}
-
             main.dataGridView1.Rows[11].Cells["Value"].Value = main.textBox3.Text = main.textBox1.Text = Convert.ToString(string.Format("{0:N1}", muni[n]));
             main.dataGridView1.Rows[12].Cells["Value"].Value = main.textBox4.Text = main.textBox9.Text = Convert.ToString(string.Format("{0:N3}", pl[n]));
             main.dataGridView1.Rows[13].Cells["Value"].Value = main.textBox5.Text = main.textBox10.Text = Convert.ToString(string.Format("{0:N3}", pm[n]));
@@ -233,7 +211,7 @@ namespace SKI
             // Изменим текст заголовка графика
             paneMuni.Title.Text = "";
             // Изменим тест надписи по оси X
-            paneMuni.XAxis.Title.Text = "мин.";
+            paneMuni.XAxis.Title.Text = "Время, мин";
             // Изменим текст по оси Y
             paneMuni.YAxis.Title.Text = "ед.";
             // Очистим список кривых на тот случай, если до этого сигналы уже были нарисованы
@@ -243,7 +221,7 @@ namespace SKI
 
             GraphPane panePl = main.zedGraphControl2.GraphPane;
             panePl.Title.Text = "";
-            panePl.XAxis.Title.Text = "мин.";
+            panePl.XAxis.Title.Text = "Время, мин";
             panePl.YAxis.Title.Text = "ед.";
             panePl.CurveList.Clear();
             MinMaxGraphs(panePl, 2);
@@ -251,7 +229,7 @@ namespace SKI
 
             GraphPane panePm = main.zedGraphControl3.GraphPane;
             panePm.Title.Text = "";
-            panePm.XAxis.Title.Text = "мин.";
+            panePm.XAxis.Title.Text = "Время, мин";
             panePm.YAxis.Title.Text = "ед.";
             panePm.CurveList.Clear();
             MinMaxGraphs(panePm, 3);
@@ -259,7 +237,7 @@ namespace SKI
 
             GraphPane paneM = main.zedGraphControl4.GraphPane;
             paneM.Title.Text = "";
-            paneM.XAxis.Title.Text = "мин.";
+            paneM.XAxis.Title.Text = "Время, мин";
             paneM.YAxis.Title.Text = "%";
             paneM.CurveList.Clear();
             MinMaxGraphs(paneM, 4);
@@ -267,7 +245,7 @@ namespace SKI
 
             GraphPane paneT = main.zedGraphControl5.GraphPane;
             paneT.Title.Text = "";
-            paneT.XAxis.Title.Text = "мин.";
+            paneT.XAxis.Title.Text = "Время, мин";
             paneT.YAxis.Title.Text = "°C";
             paneT.CurveList.Clear();
             MinMaxGraphs(paneT, 5);
@@ -275,7 +253,7 @@ namespace SKI
 
             GraphPane paneCh2 = main.zedGraphControl6.GraphPane;
             paneCh2.Title.Text = "";
-            paneCh2.XAxis.Title.Text = "мин.";
+            paneCh2.XAxis.Title.Text = "Время, мин";
             paneCh2.YAxis.Title.Text = "%";
             paneCh2.CurveList.Clear();
             MinMaxGraphs(paneCh2, 6);
@@ -283,7 +261,7 @@ namespace SKI
 
             GraphPane paneD = main.zedGraphControl7.GraphPane;
             paneD.Title.Text = "";
-            paneD.XAxis.Title.Text = "мин.";
+            paneD.XAxis.Title.Text = "Время, мин";
             paneD.YAxis.Title.Text = "%";
             paneD.CurveList.Clear();
             MinMaxGraphs(paneD, 7);

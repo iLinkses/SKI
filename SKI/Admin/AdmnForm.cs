@@ -133,9 +133,8 @@ namespace SKI
 
         private void сменитьПользователяToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           var CurrProc = Process.GetCurrentProcess().ProcessName;
             Application.Exit();
-            Process.Start(CurrProc+".exe");
+            Process.Start(Process.GetCurrentProcess().ProcessName + ".exe");
         }
     }
 }

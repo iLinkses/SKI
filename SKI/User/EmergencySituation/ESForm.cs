@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,6 +91,12 @@ namespace SKI
         {
             FillTree();
             GetInfluenceOfImpurities();
+            GetPDF();
+        }
+
+        private void GetPDF()
+        {
+            PDFViewer.Navigate(Directory.GetCurrentDirectory()+"/AboutMathModel.pdf");
         }
 
         private void GetInfluenceOfImpurities()

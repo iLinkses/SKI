@@ -29,9 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MathModel));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage10 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
@@ -139,6 +138,17 @@
             this.zedGraphControl6 = new ZedGraph.ZedGraphControl();
             this.tabPage9 = new System.Windows.Forms.TabPage();
             this.zedGraphControl7 = new ZedGraph.ZedGraphControl();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.label52 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label55 = new System.Windows.Forms.Label();
+            this.label56 = new System.Windows.Forms.Label();
+            this.label57 = new System.Windows.Forms.Label();
+            this.label58 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage10.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown14)).BeginInit();
@@ -188,6 +198,18 @@
             // 
             // tabPage10
             // 
+            this.tabPage10.Controls.Add(this.label58);
+            this.tabPage10.Controls.Add(this.label57);
+            this.tabPage10.Controls.Add(this.label56);
+            this.tabPage10.Controls.Add(this.label55);
+            this.tabPage10.Controls.Add(this.label54);
+            this.tabPage10.Controls.Add(this.label53);
+            this.tabPage10.Controls.Add(this.label52);
+            this.tabPage10.Controls.Add(this.label51);
+            this.tabPage10.Controls.Add(this.label50);
+            this.tabPage10.Controls.Add(this.label49);
+            this.tabPage10.Controls.Add(this.label48);
+            this.tabPage10.Controls.Add(this.numericUpDown8);
             this.tabPage10.Controls.Add(this.button2);
             this.tabPage10.Controls.Add(this.textBox5);
             this.tabPage10.Controls.Add(this.textBox4);
@@ -199,7 +221,6 @@
             this.tabPage10.Controls.Add(this.numericUpDown11);
             this.tabPage10.Controls.Add(this.numericUpDown10);
             this.tabPage10.Controls.Add(this.numericUpDown9);
-            this.tabPage10.Controls.Add(this.numericUpDown8);
             this.tabPage10.Controls.Add(this.dataGridView1);
             this.tabPage10.Controls.Add(this.pictureBox1);
             this.tabPage10.Location = new System.Drawing.Point(4, 25);
@@ -254,7 +275,7 @@
             // 
             // numericUpDown14
             // 
-            this.numericUpDown14.Location = new System.Drawing.Point(715, 702);
+            this.numericUpDown14.Location = new System.Drawing.Point(813, 685);
             this.numericUpDown14.Maximum = new decimal(new int[] {
             20,
             0,
@@ -277,7 +298,7 @@
             // 
             // numericUpDown13
             // 
-            this.numericUpDown13.Location = new System.Drawing.Point(622, 702);
+            this.numericUpDown13.Location = new System.Drawing.Point(686, 685);
             this.numericUpDown13.Maximum = new decimal(new int[] {
             10,
             0,
@@ -306,7 +327,7 @@
             0,
             0,
             131072});
-            this.numericUpDown12.Location = new System.Drawing.Point(526, 702);
+            this.numericUpDown12.Location = new System.Drawing.Point(561, 685);
             this.numericUpDown12.Maximum = new decimal(new int[] {
             3,
             0,
@@ -335,7 +356,7 @@
             0,
             0,
             131072});
-            this.numericUpDown11.Location = new System.Drawing.Point(435, 702);
+            this.numericUpDown11.Location = new System.Drawing.Point(435, 685);
             this.numericUpDown11.Maximum = new decimal(new int[] {
             3,
             0,
@@ -364,7 +385,7 @@
             0,
             0,
             65536});
-            this.numericUpDown10.Location = new System.Drawing.Point(344, 702);
+            this.numericUpDown10.Location = new System.Drawing.Point(318, 685);
             this.numericUpDown10.Maximum = new decimal(new int[] {
             9,
             0,
@@ -392,7 +413,7 @@
             0,
             0,
             0});
-            this.numericUpDown9.Location = new System.Drawing.Point(252, 702);
+            this.numericUpDown9.Location = new System.Drawing.Point(194, 685);
             this.numericUpDown9.Minimum = new decimal(new int[] {
             10,
             0,
@@ -415,7 +436,7 @@
             0,
             0,
             0});
-            this.numericUpDown8.Location = new System.Drawing.Point(158, 702);
+            this.numericUpDown8.Location = new System.Drawing.Point(68, 685);
             this.numericUpDown8.Maximum = new decimal(new int[] {
             60,
             0,
@@ -440,8 +461,8 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.White;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
@@ -460,10 +481,10 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(927, 224);
@@ -524,7 +545,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.Default;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::SKI.Properties.Resources.Мнемосхема;
             this.pictureBox1.Location = new System.Drawing.Point(3, 233);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(927, 496);
@@ -1593,6 +1614,116 @@
             this.zedGraphControl7.TabIndex = 0;
             this.zedGraphControl7.UseExtendedPrintDialog = true;
             // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label48.Location = new System.Drawing.Point(8, 710);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(146, 13);
+            this.label48.TabIndex = 57;
+            this.label48.Text = "Концентрация изопрена (%)";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label49.Location = new System.Drawing.Point(160, 710);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(125, 13);
+            this.label49.TabIndex = 58;
+            this.label49.Text = "Температура шихты (°C)";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label50.Location = new System.Drawing.Point(291, 710);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(98, 13);
+            this.label50.TabIndex = 59;
+            this.label50.Text = "Расход шихты (т/ч)";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label51.Location = new System.Drawing.Point(423, 710);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(84, 13);
+            this.label51.TabIndex = 60;
+            this.label51.Text = "Расход К/К (т/ч)";
+            // 
+            // label52
+            // 
+            this.label52.AutoSize = true;
+            this.label52.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label52.Location = new System.Drawing.Point(513, 710);
+            this.label52.Name = "label52";
+            this.label52.Size = new System.Drawing.Size(123, 13);
+            this.label52.TabIndex = 61;
+            this.label52.Text = "Расход хладагента (т/ч)";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label53.Location = new System.Drawing.Point(633, 710);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(150, 13);
+            this.label53.TabIndex = 62;
+            this.label53.Text = "Температура хладагента (°C)";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label54.Location = new System.Drawing.Point(784, 710);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(146, 13);
+            this.label54.TabIndex = 63;
+            this.label54.Text = "Концентрация водорода (%)";
+            // 
+            // label55
+            // 
+            this.label55.AutoSize = true;
+            this.label55.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label55.Location = new System.Drawing.Point(660, 529);
+            this.label55.Name = "label55";
+            this.label55.Size = new System.Drawing.Size(123, 13);
+            this.label55.TabIndex = 64;
+            this.label55.Text = "Температура смеси (°C)";
+            // 
+            // label56
+            // 
+            this.label56.AutoSize = true;
+            this.label56.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label56.Location = new System.Drawing.Point(665, 557);
+            this.label56.Name = "label56";
+            this.label56.Size = new System.Drawing.Size(118, 13);
+            this.label56.TabIndex = 65;
+            this.label56.Text = "Вязкость по Муни (ед.)";
+            // 
+            // label57
+            // 
+            this.label57.AutoSize = true;
+            this.label57.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label57.Location = new System.Drawing.Point(625, 580);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(158, 13);
+            this.label57.TabIndex = 66;
+            this.label57.Text = "Пластичность по Карреру (ед.)";
+            // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label58.Location = new System.Drawing.Point(674, 613);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(100, 13);
+            this.label58.TabIndex = 67;
+            this.label58.Text = "Потери массы (ед.)";
+            // 
             // MathModel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1754,6 +1885,17 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn MaxVal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Value;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label54;
+        private System.Windows.Forms.Label label53;
+        private System.Windows.Forms.Label label52;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label58;
+        private System.Windows.Forms.Label label57;
+        private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Label label55;
     }
 }
 
