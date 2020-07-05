@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using ZedGraph;
 using System.Data.SQLite;
+using System.Drawing.Drawing2D;
 
 namespace SKI
 {
@@ -271,6 +272,7 @@ namespace SKI
                 }
                 string Command = "select TP.ID, " +
                                         "TP.Parameter, " +
+                                        "TP.Marking, " +
                                         "TP.Type, " +
                                         "TP.MinVal, " +
                                         "TP.MaxVal, " +
@@ -309,6 +311,8 @@ namespace SKI
         {
             button1_Click(sender, e);
             SetRowColor();
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.Rows[11].Index;
+            //dataGridView1.Rows[17].Selected = true;
         }
 
         /// <summary>
@@ -319,15 +323,19 @@ namespace SKI
             foreach (DataGridViewRow dgvr in dataGridView1.Rows)
             {
                 Color RowColor = Color.White;
+                //Color SelectionRowColor = SystemColors.GradientActiveCaption;
+                //Console.WriteLine(Color.FromArgb(50, SystemColors.GradientActiveCaption));
                 if (dataGridView1.Rows[dgvr.Index].Cells["Value"].Value.ToString() != "")
                 {
                     if (double.Parse(dataGridView1.Rows[dgvr.Index].Cells["Value"].Value.ToString()) < double.Parse(dataGridView1.Rows[dgvr.Index].Cells["MinVal"].Value.ToString()) || double.Parse(dataGridView1.Rows[dgvr.Index].Cells["Value"].Value.ToString()) > double.Parse(dataGridView1.Rows[dgvr.Index].Cells["MaxVal"].Value.ToString()))
                     {
                         RowColor = Color.Red;
+                        //SelectionRowColor = Color.FromArgb(50, SystemColors.GradientActiveCaption);
                     }
                 }
-                dataGridView1.Rows[dgvr.Index].DefaultCellStyle.BackColor = dataGridView1.Rows[dgvr.Index].DefaultCellStyle.SelectionBackColor = RowColor;
+                dataGridView1.Rows[dgvr.Index].DefaultCellStyle.BackColor = RowColor;
                 dataGridView1.Rows[dgvr.Index].DefaultCellStyle.SelectionForeColor = Color.Black;
+                //dataGridView1.Rows[dgvr.Index].DefaultCellStyle.SelectionBackColor = SelectionRowColor;
             }
 
         }
@@ -335,36 +343,50 @@ namespace SKI
         #region Связь при изменении значений на вкладках
         private void numericUpDown8_ValueChanged(object sender, EventArgs e)
         {
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.Rows[4].Index;
+            dataGridView1.Rows[4].Selected = true;
             dataGridView1.Rows[4].Cells["Value"].Value = numericUpDown1.Value = numericUpDown8.Value;
         }
 
         private void numericUpDown9_ValueChanged(object sender, EventArgs e)
         {
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.Rows[4].Index;
+            dataGridView1.Rows[5].Selected = true;
             dataGridView1.Rows[5].Cells["Value"].Value = numericUpDown2.Value = numericUpDown9.Value;
         }
 
         private void numericUpDown10_ValueChanged(object sender, EventArgs e)
         {
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.Rows[4].Index;
+            dataGridView1.Rows[6].Selected = true;
             dataGridView1.Rows[6].Cells["Value"].Value = numericUpDown3.Value = numericUpDown10.Value;
         }
 
         private void numericUpDown11_ValueChanged(object sender, EventArgs e)
         {
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.Rows[4].Index;
+            dataGridView1.Rows[7].Selected = true;
             dataGridView1.Rows[7].Cells["Value"].Value = numericUpDown4.Value = numericUpDown11.Value;
         }
 
         private void numericUpDown12_ValueChanged(object sender, EventArgs e)
         {
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.Rows[4].Index;
+            dataGridView1.Rows[8].Selected = true;
             dataGridView1.Rows[8].Cells["Value"].Value = numericUpDown5.Value = numericUpDown12.Value;
         }
 
         private void numericUpDown13_ValueChanged(object sender, EventArgs e)
         {
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.Rows[4].Index;
+            dataGridView1.Rows[9].Selected = true;
             dataGridView1.Rows[9].Cells["Value"].Value = numericUpDown6.Value = numericUpDown13.Value;
         }
 
         private void numericUpDown14_ValueChanged(object sender, EventArgs e)
         {
+            dataGridView1.FirstDisplayedScrollingRowIndex = dataGridView1.Rows[4].Index;
+            dataGridView1.Rows[10].Selected = true;
             dataGridView1.Rows[10].Cells["Value"].Value = numericUpDown7.Value = numericUpDown14.Value;
         }
 
@@ -402,6 +424,6 @@ namespace SKI
         {
             dataGridView1.Rows[10].Cells["Value"].Value = numericUpDown14.Value = numericUpDown7.Value;
         }
-        #endregion
+        #endregion 
     }
 }

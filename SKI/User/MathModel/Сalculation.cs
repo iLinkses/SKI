@@ -213,7 +213,7 @@ namespace SKI
             // Изменим тест надписи по оси X
             paneMuni.XAxis.Title.Text = "Время, мин";
             // Изменим текст по оси Y
-            paneMuni.YAxis.Title.Text = "ед.";
+            paneMuni.YAxis.Title.Text = "Vm, ед.";
             // Очистим список кривых на тот случай, если до этого сигналы уже были нарисованы
             paneMuni.CurveList.Clear();
             MinMaxGraphs(paneMuni, 1);
@@ -222,7 +222,7 @@ namespace SKI
             GraphPane panePl = main.zedGraphControl2.GraphPane;
             panePl.Title.Text = "";
             panePl.XAxis.Title.Text = "Время, мин";
-            panePl.YAxis.Title.Text = "ед.";
+            panePl.YAxis.Title.Text = "Pl, ед.";
             panePl.CurveList.Clear();
             MinMaxGraphs(panePl, 2);
             Graphs(panePl, pl);
@@ -230,7 +230,7 @@ namespace SKI
             GraphPane panePm = main.zedGraphControl3.GraphPane;
             panePm.Title.Text = "";
             panePm.XAxis.Title.Text = "Время, мин";
-            panePm.YAxis.Title.Text = "ед.";
+            panePm.YAxis.Title.Text = "Pm, ед.";
             panePm.CurveList.Clear();
             MinMaxGraphs(panePm, 3);
             Graphs(panePm, pm);
@@ -238,7 +238,7 @@ namespace SKI
             GraphPane paneM = main.zedGraphControl4.GraphPane;
             paneM.Title.Text = "";
             paneM.XAxis.Title.Text = "Время, мин";
-            paneM.YAxis.Title.Text = "%";
+            paneM.YAxis.Title.Text = "m, %";
             paneM.CurveList.Clear();
             MinMaxGraphs(paneM, 4);
             Graphs(paneM, m);
@@ -246,7 +246,7 @@ namespace SKI
             GraphPane paneT = main.zedGraphControl5.GraphPane;
             paneT.Title.Text = "";
             paneT.XAxis.Title.Text = "Время, мин";
-            paneT.YAxis.Title.Text = "°C";
+            paneT.YAxis.Title.Text = "Tвых, °C";
             paneT.CurveList.Clear();
             MinMaxGraphs(paneT, 5);
             Graphs(paneT, T);
@@ -254,7 +254,7 @@ namespace SKI
             GraphPane paneCh2 = main.zedGraphControl6.GraphPane;
             paneCh2.Title.Text = "";
             paneCh2.XAxis.Title.Text = "Время, мин";
-            paneCh2.YAxis.Title.Text = "%";
+            paneCh2.YAxis.Title.Text = "h, %";
             paneCh2.CurveList.Clear();
             MinMaxGraphs(paneCh2, 6);
             Graphs(paneCh2, ch2);
@@ -262,7 +262,7 @@ namespace SKI
             GraphPane paneD = main.zedGraphControl7.GraphPane;
             paneD.Title.Text = "";
             paneD.XAxis.Title.Text = "Время, мин";
-            paneD.YAxis.Title.Text = "%";
+            paneD.YAxis.Title.Text = "d, %";
             paneD.CurveList.Clear();
             MinMaxGraphs(paneD, 7);
             Graphs(paneD, d);
